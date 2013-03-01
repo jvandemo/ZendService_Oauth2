@@ -9,3 +9,6 @@ composer.lock
 
 # Ignore vendor folder and all files and folders underneath it
 vendor/
+
+# Ignore local files
+*.local.php
