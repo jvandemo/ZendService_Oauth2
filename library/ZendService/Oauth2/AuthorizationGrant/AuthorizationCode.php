@@ -39,14 +39,14 @@ class AuthorizationCode extends AbstractAuthorizationGrant
      *
      * @var string
      */
-    protected $_response_type = 'code';
+    protected $_responseType = 'code';
     
     /**
      * Redirect URI
      *
      * @var string
      */
-    protected $_redirect_uri = '';
+    protected $_redirectUri = '';
     
     /**
      * Scope
@@ -61,8 +61,7 @@ class AuthorizationCode extends AbstractAuthorizationGrant
      * @var string
      */
     protected $_state = '';
-    
-        
+                
 	/**
      * @return string
      */
