@@ -44,6 +44,27 @@ class AuthorizationCode extends AbstractAuthorizationGrant
     protected $_responseType = 'code';
     
     /**
+     * Authorization URL
+     *
+     * @var string
+     */
+    protected $_authorizationUrl = '';
+    
+    /**
+     * Access token URL
+     *
+     * @var string
+     */
+    protected $_accessTokenUrl = '';
+    
+    /**
+     * Request token URL
+     *
+     * @var string
+     */
+    protected $_requestTokenUrl = '';
+    
+    /**
      * Redirect URL
      *
      * @var string
@@ -109,12 +130,66 @@ class AuthorizationCode extends AbstractAuthorizationGrant
     }
 
 	/**
-     * @param string $_responseType
+     * @param string $responseType
      * @return self
      */
-    public function setResponseType($_responseType)
+    public function setResponseType($responseType)
     {
-        $this->_responseType = $_responseType;
+        $this->_responseType = $responseType;
+        return $this;
+    }
+    
+	/**
+     * @return string
+     */
+    public function getAccessTokenUrl()
+    {
+        return $this->_accessTokenUrl;
+    }
+
+	/**
+     * @param string $accessTokenUrl
+     * @return self
+     */
+    public function setAccessTokenUrl($accessTokenUrl)
+    {
+        $this->_accessTokenUrl = $accessTokenUrl;
+        return $this;
+    }
+
+	/**
+     * @return string
+     */
+    public function getRequestTokenUrl()
+    {
+        return $this->_requestTokenUrl;
+    }
+
+	/**
+     * @param string $requestTokenUrl
+     * @return self
+     */
+    public function setRequestTokenUrl($requestTokenUrl)
+    {
+        $this->_requestTokenUrl = $requestTokenUrl;
+        return $this;
+    }
+    
+    /**
+     * @return string
+     */
+    public function getAuthorizationUrl()
+    {
+        return $this->_authorizationUrl;
+    }
+
+	/**
+     * @param string $authorizationUrl
+     * @return self
+     */
+    public function setAuthorizationUrl($authorizationUrl)
+    {
+        $this->_authorizationUrl = $authorizationUrl;
         return $this;
     }
 
@@ -127,12 +202,12 @@ class AuthorizationCode extends AbstractAuthorizationGrant
     }
 
 	/**
-     * @param string $_redirectUrl
+     * @param string $redirectUrl
      * @return self
      */
-    public function setRedirectUrl($_redirectUrl)
+    public function setRedirectUrl($redirectUrl)
     {
-        $this->_redirectUrl = $_redirectUrl;
+        $this->_redirectUrl = $redirectUrl;
         return $this;
     }
 
@@ -176,7 +251,7 @@ class AuthorizationCode extends AbstractAuthorizationGrant
      * (non-PHPdoc)
      * @see \ZendService\Oauth2\AuthorizationGrant\AuthorizationGrantInterface::getAuthorizationUrl()
      */
-    public function getAuthorizationUrl()
+    public function getAuthorizationRequestUrl()
     {
         
     }
