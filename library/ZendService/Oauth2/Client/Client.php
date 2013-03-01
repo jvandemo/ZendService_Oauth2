@@ -34,88 +34,12 @@ class Client
 {
 
     /**
-     * Convenience placeholder for options that are passed to the constructor
-     *
-     * These options are passed to the authorizationGrant when it is instantiated
-     *
-     * No getter or setter defined because it should not be publicly available
-     *
-     * @var mixed
-     */
-    protected $_options = null;
-
-    /**
-     * Oauth2.0 authorization grant
-     *
-     * @var \ZendService\Oauth2\AuthorizationGrant\AuthorizationGrantInterface
-     */
-    protected $_authorizationGrant = null;
-
-    /**
-     * HTTP client placeholder
-     *
-     * @var \Zend\Http\Client
-     */
-    protected $_httpClient = null;
-
-    /**
      * Constructor
      *
      * @param mixed $options Options that need to be passed to authorization grant
      */
     public function __construct($options)
     {
-        $this->_options = $options;
     }
 
-    /**
-     * Get authorization grant
-     *
-     * @return \ZendService\Oauth2\AuthorizationGrant\AuthorizationGrantInterface
-     */
-    public function getAuthorizationGrant()
-    {
-        if (null === $this->_authorizationGrant) {
-            $this->_authorizationGrant = new AuthorizationCode($this->_options);
-        }
-        return $this->_authorizationGrant;
-    }
-
-    /**
-     * Set authorization grant
-     *
-     * @param \ZendService\Oauth2\AuthorizationGrant\AuthorizationGrantInterface $_authorizationGrant
-     * @return self
-     */
-    public function setAuthorizationGrant($authorizationGrant)
-    {
-        if ($authorizationGrant instanceof AuthorizationGrantInterface) {
-            $this->_authorizationGrant = $authorizationGrant;
-        }
-        return $this;
-    }
-
-    /**
-     * Get HTTP client
-     *
-     * @return \Zend\Http\Client
-     */
-    public function getHttpClient()
-    {
-        return $this->_httpClient;
-    }
-
-    /**
-     * Set HTTP client
-     *
-     * @param \Zend\Http\Client $httpClient
-     * @return self
-     */
-    public function setHttpClient($httpClient)
-    {
-        if ($httpClient instanceof HttpClient) {
-            $this->_httpClient = $httpClient;
-        }
-        return $this;
-    }
 }
