@@ -171,7 +171,22 @@ class AuthorizationCode extends AbstractAuthorizationGrant
         return $this;
     }
 
+    /**
+     * (non-PHPdoc)
+     * @see \ZendService\Oauth2\AuthorizationGrant\AuthorizationGrantInterface::getAuthorizationUri()
+     */
+    public function getAuthorizationUri()
+    {
+        
+    }
     
+    public function getAccessToken()
+    {
+        
+    }
     
-    
+    public function getRefreshToken()
+    {
+        
+    }
 }
