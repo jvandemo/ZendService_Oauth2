@@ -17,8 +17,161 @@ use ZendService\Oauth2\AuthorizationGrant\AbstractAuthorizationGrant;
  * @package    ZendService_Oauth2
  * @subpackage AuthorizationGrant
  */
-class AuhtorizationCode extends AbstractAuthorizationGrant
+class AuthorizationCode extends AbstractAuthorizationGrant
 {
 
+    /**
+     * Client ID
+     *
+     * @var string
+     */
+    protected $_clientId = '';
+    
+    /**
+     * Client secret
+     *
+     * @var string
+     */
+    protected $_clientSecret = '';
+    
+    /**
+     * Response type
+     *
+     * @var string
+     */
+    protected $_response_type = 'code';
+    
+    /**
+     * Redirect URI
+     *
+     * @var string
+     */
+    protected $_redirect_uri = '';
+    
+    /**
+     * Scope
+     *
+     * @var string
+     */
+    protected $_scope = '';
+    
+    /**
+     * State
+     *
+     * @var string
+     */
+    protected $_state = '';
+    
+        
+	/**
+     * @return string
+     */
+    public function getClientId()
+    {
+        return $this->_clientId;
+    }
+
+	/**
+     * @param string $clientId
+     * @return self
+     */
+    public function setClientId($clientId)
+    {
+        $this->_clientId = $clientId;
+        return $this;
+    }
+
+	/**
+     * @return string
+     */
+    public function getClientSecret()
+    {
+        return $this->_clientSecret;
+    }
+
+	/**
+     * @param string $clientSecret
+     * @return self
+     */
+    public function setClientSecret($clientSecret)
+    {
+        $this->_clientSecret = $clientSecret;
+        return $this;
+    }
+
+	/**
+     * @return string
+     */
+    public function getResponse_type()
+    {
+        return $this->_response_type;
+    }
+
+	/**
+     * @param string $response_type
+     * @return self
+     */
+    public function setResponse_type($response_type)
+    {
+        $this->_response_type = $response_type;
+        return $this;
+    }
+
+	/**
+     * @return string
+     */
+    public function getRedirect_uri()
+    {
+        return $this->_redirect_uri;
+    }
+
+	/**
+     * @param string $redirect_uri
+     * @return self
+     */
+    public function setRedirect_uri($redirect_uri)
+    {
+        $this->_redirect_uri = $redirect_uri;
+        return $this;
+    }
+
+	/**
+     * @return string
+     */
+    public function getScope()
+    {
+        return $this->_scope;
+    }
+
+	/**
+     * @param string $scope
+     * @return self
+     */
+    public function setScope($scope)
+    {
+        $this->_scope = $scope;
+        return $this;
+    }
+
+	/**
+     * @return string
+     */
+    public function getState()
+    {
+        return $this->_state;
+    }
+
+	/**
+     * @param string $state
+     * @return self
+     */
+    public function setState($state)
+    {
+        $this->_state = $state;
+        return $this;
+    }
+
+    
+    
     
 }
