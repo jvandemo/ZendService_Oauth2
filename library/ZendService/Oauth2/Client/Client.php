@@ -34,13 +34,4 @@ use ZendService\Oauth2\Client\AbstractClient;
 class Client extends AbstractClient
 {
 
-    /**
-     * Constructor
-     *
-     * @param mixed $options Options that need to be passed to authorization grant
-     */
-    public function __construct($options)
-    {
-    }
-
 }
