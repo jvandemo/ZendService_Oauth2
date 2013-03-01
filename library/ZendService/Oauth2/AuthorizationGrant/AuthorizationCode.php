@@ -44,11 +44,11 @@ class AuthorizationCode extends AbstractAuthorizationGrant
     protected $_responseType = 'code';
     
     /**
-     * Redirect URI
+     * Redirect URL
      *
      * @var string
      */
-    protected $_redirectUri = '';
+    protected $_redirectUrl = '';
     
     /**
      * Scope
@@ -103,36 +103,36 @@ class AuthorizationCode extends AbstractAuthorizationGrant
 	/**
      * @return string
      */
-    public function getResponse_type()
+    public function getResponseType()
     {
-        return $this->_response_type;
+        return $this->_responseType;
     }
 
 	/**
-     * @param string $response_type
+     * @param string $_responseType
      * @return self
      */
-    public function setResponse_type($response_type)
+    public function setResponseType($_responseType)
     {
-        $this->_response_type = $response_type;
+        $this->_responseType = $_responseType;
         return $this;
     }
 
 	/**
      * @return string
      */
-    public function getRedirect_uri()
+    public function getRedirectUrl()
     {
-        return $this->_redirect_uri;
+        return $this->_redirectUrl;
     }
 
 	/**
-     * @param string $redirect_uri
+     * @param string $_redirectUrl
      * @return self
      */
-    public function setRedirect_uri($redirect_uri)
+    public function setRedirectUrl($_redirectUrl)
     {
-        $this->_redirect_uri = $redirect_uri;
+        $this->_redirectUrl = $_redirectUrl;
         return $this;
     }
 
