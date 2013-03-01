@@ -18,11 +18,11 @@ namespace ZendService\Oauth2\AuthorizationGrant;
 interface AuthorizationGrantInterface
 {
     /**
-     * Get URL for authorization
+     * Get URL for authorization request
      *
-     * @return string Authorization URL
+     * @return string Authorization request URL
      */
-    public function getAuthorizationUrl();
+    public function getAuthorizationRequestUrl();
     
     /**
      * Get access token
