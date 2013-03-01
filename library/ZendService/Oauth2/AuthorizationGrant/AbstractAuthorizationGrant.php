@@ -27,7 +27,7 @@ abstract class AbstractAuthorizationGrant implements AuthorizationGrantInterface
      *
      * @param array|Traversable $options
      */
-    public function __construct ($options = array())
+    public function __construct ($options)
     {
         $this->setOptions($options);
     }
