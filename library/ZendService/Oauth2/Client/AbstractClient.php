@@ -64,7 +64,7 @@ class AbstractClient implements ClientInterface
      *
      * @param mixed $options Options that need to be passed to authorization grant
      */
-    public function __construct($options)
+    public function __construct($options = array())
     {
         $this->_options = $options;
     }
