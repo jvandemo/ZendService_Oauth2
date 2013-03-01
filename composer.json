@@ -1,0 +1,35 @@
+{
+    "name": "zendframework/zendservice-oauth2",
+    "description": "Oauth2.0 service for Zend Framework 2",
+    "type": "library",
+    "keywords": [
+        "zf2",
+        "oauth",
+        "oauth2",
+        "oauth20"
+    ],
+    "homepage": "http://packages.zendframework.com/",
+    "license": "BSD-3-Clause",
+    "autoload": {
+        "psr-0": {
+            "ZendService\\Oauth2\\": "library/"
+        }
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "http://packages.zendframework.com/"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "zendframework/zend-http": ">=2.0.0",
+        "zendframework/zend-uri": ">=2.0.0",
+        "zendframework/zend-version": ">=2.0.0"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "2.0.x-dev"
+        }
+    }
+}
