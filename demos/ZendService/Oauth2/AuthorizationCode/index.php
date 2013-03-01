@@ -11,16 +11,18 @@
 include_once '../Autoload/_autoload.php';
 
 // Include local config file
-$config = include 'config.local.php';
+if (is_readable('config.local.php')) {
+    $config = include 'config.local.php';
+} else {
+    $config = include 'config.local.php.dist';
+}
 
 use ZendService\Oauth2\Client\Client as Client;
 
 try{
 ?>
     <?php
-    $client = new Client(array(
-        'client_id' => $config['client']['client_id']
-    ));
+    $client = new Client($config['client']);
     ?>
     
     <h4>Client</h4>
@@ -31,6 +33,11 @@ try{
     <h4>Authorization Grant</h4>
     <pre>
     <?php var_dump($client->getAuthorizationGrant()); ?>
+    </pre>
+    
+    <h4>Authorization request url</h4>
+    <pre>
+    <?php var_dump($client->getAuthorizationRequestUrl()); ?>
     </pre>
 
 <?php
