@@ -8,7 +8,10 @@
  * @package   Zend_Service
  */
 
-include_once '_autoload.php';
+include_once '../Autoload/_autoload.php';
+
+// Include local config file
+$config = include 'config.local.php';
 
 use ZendService\Oauth2\Client\Client as Client;
 
@@ -16,7 +19,7 @@ try{
 ?>
     <?php
     $client = new Client(array(
-        'client_id' => '12345',
+        'client_id' => $config['client']['client_id']
     ));
     ?>
     

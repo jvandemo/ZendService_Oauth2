@@ -1,0 +1,6 @@
+<?php
+return array(
+    'client' => array(
+        'client_id' => '12345678'
+    )
+);

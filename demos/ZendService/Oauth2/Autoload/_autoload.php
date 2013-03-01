@@ -1,5 +1,5 @@
 <?php
-$vendor = dirname(dirname(dirname(__DIR__))).'/vendor';
+$vendor = dirname(dirname(dirname(dirname(__DIR__)))).'/vendor';
 // Composer autoloading
 if (file_exists($vendor.'/autoload.php')) {
     include $vendor.'/autoload.php';
