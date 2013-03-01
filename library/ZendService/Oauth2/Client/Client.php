@@ -21,9 +21,6 @@
  */
 namespace ZendService\Oauth2\Client;
 
-use Zend\Http\Client as HttpClient;
-use ZendService\Oauth2\AuthorizationGrant\AuthorizationCode;
-use ZendService\Oauth2\AuthorizationGrant\AuthorizationGrantInterface;
 use ZendService\Oauth2\Client\AbstractClient;
 
 /**
