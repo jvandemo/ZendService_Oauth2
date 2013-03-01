@@ -1,0 +1,7 @@
+<?php
+return array(
+	'tests' => array(
+	    'generate_report' => false,
+	    'enable_output_buffering' => false,
+    )
+);
