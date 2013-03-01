@@ -11,6 +11,8 @@
 namespace ZendService\Oauth2\AuthorizationGrant;
 
 use ZendService\Oauth2\AuthorizationGrant\AbstractAuthorizationGrant;
+use ZendService;
+use ZendService\Oauth2\AuthorizationGrant\Exception\Exception;
 
 /**
  * @category   Zend
@@ -172,9 +174,9 @@ class AuthorizationCode extends AbstractAuthorizationGrant
 
     /**
      * (non-PHPdoc)
-     * @see \ZendService\Oauth2\AuthorizationGrant\AuthorizationGrantInterface::getAuthorizationUri()
+     * @see \ZendService\Oauth2\AuthorizationGrant\AuthorizationGrantInterface::getAuthorizationUrl()
      */
-    public function getAuthorizationUri()
+    public function getAuthorizationUrl()
     {
         
     }
