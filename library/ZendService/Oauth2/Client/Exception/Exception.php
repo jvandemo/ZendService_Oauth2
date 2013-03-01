@@ -16,6 +16,6 @@ namespace ZendService\Oauth2\Client\Exception;
  * @category   Zend
  * @package    ZendService_Oauth2
  */
-class Exception implements ExceptionInterface
+class Exception extends \Exception implements ExceptionInterface
 {
 }
