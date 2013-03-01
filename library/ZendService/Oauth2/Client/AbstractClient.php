@@ -119,4 +119,40 @@ class AbstractClient implements ClientInterface
         }
         return $this;
     }
+
+    /**
+     * Get URL for authorization request
+     *
+     * Convenience function that delegates to authoration grant
+     *
+     * @return string Authorization request URL
+     */
+    public function getAuthorizationRequestUrl()
+    {
+        return $this->getAuthorizationGrant()->getAuthorizationRequestUrl();
+    }
+
+    /**
+     * Get access token
+     *
+     * Convenience function that delegates to authoration grant
+     *
+     * @return \ZendService\Oauth2\AccessToken\AccessTokenInterface
+     */
+    public function getAccessToken()
+    {
+        return $this->getAuthorizationGrant()->getAccessToken();
+    }
+
+    /**
+     * Get refresh token
+     *
+     * Convenience function that delegates to authoration grant
+     *
+     * @return \ZendService\Oauth2\RefreshToken\RefreshTokenInterface
+     */
+    public function getRefreshToken()
+    {
+        return $this->getAuthorizationGrant()->getRefreshToken();
+    }
 }
