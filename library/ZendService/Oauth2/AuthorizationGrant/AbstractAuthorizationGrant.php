@@ -74,9 +74,7 @@ abstract class AbstractAuthorizationGrant implements AuthorizationGrantInterface
      *
      * Example:
      *
-     * array(
-     *     'client_id' => '1234'
-     * )
+     * setOption('client_id', '1234')
      *
      * will run setClientId('1234')
      *
@@ -87,11 +85,7 @@ abstract class AbstractAuthorizationGrant implements AuthorizationGrantInterface
     public function setOption($name = '', $value = null)
     {
         // Assemble setter name
-        $setter = 'set';
-        $words = explode('_', strtolower($name));
-        foreach ($words as $word) {
-            $setter .= ucfirst(trim($word));
-        }
+        $setter = 'set' . _underscoreToUpperCase($name);
         
         // Handle unexisting setter
         if (! method_exists($this, $setter)) {
@@ -99,5 +93,51 @@ abstract class AbstractAuthorizationGrant implements AuthorizationGrantInterface
         }
         
         return $this->$setter($value);
+    }
+    
+    /**
+     * Get single option
+     *
+     * Calls a getter and returns null if getter does not exist
+     *
+     * Normalizes underscores in option names to uppercase
+     *
+     * Example:
+     *
+     * getOption('client_id')
+     *
+     * will run getClientId()
+     *
+     * @param string $name
+     * @param mixed $params
+     * @return self
+     */
+    public function getOption($name = '')
+    {
+        // Assemble setter name
+        $getter = 'set' . _underscoreToUpperCase($name);
+    
+        // Handle unexisting setter
+        if (! method_exists($this, $getter)) {
+            return $this;
+        }
+    
+        return $this->$getter($value);
+    }
+    
+    /**
+     * Convert all underscores in string to upper case
+     *
+     * @param string $name
+     * @return string String with underscores replaced by upper case
+     */
+    protected function _underscoreToUpperCase($name = '')
+    {
+        $result = '';
+        $words = explode('_', strtolower($name));
+        foreach ($words as $word) {
+            $result .= ucfirst(trim($word));
+        }
+        return $result;
     }
 }
