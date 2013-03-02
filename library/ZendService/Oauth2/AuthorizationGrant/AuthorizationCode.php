@@ -44,12 +44,27 @@ class AuthorizationCode extends AbstractAuthorizationGrant
     /**
      * Authorization URL
      *
+     * URL of authorization endpoint
+     *
      * @var string
      */
     protected $_authorizationUrl = '';
     
+    
+    /**
+     * Authorization code
+     *
+     * Code received in response from authorization url
+     * and necessary to request access token
+     *
+     * @var string
+     */
+    protected $_authorizationCode = '';
+    
     /**
      * Access token URL
+     *
+     * URL of access token endpoint
      *
      * @var string
      */
@@ -57,6 +72,8 @@ class AuthorizationCode extends AbstractAuthorizationGrant
     
     /**
      * Request token URL
+     *
+     * URL of request token endpoint
      *
      * @var string
      */
@@ -188,6 +205,24 @@ class AuthorizationCode extends AbstractAuthorizationGrant
     public function setAuthorizationUrl($authorizationUrl)
     {
         $this->_authorizationUrl = $authorizationUrl;
+        return $this;
+    }
+    
+	/**
+     * @return string
+     */
+    public function getAuthorizationCode()
+    {
+        return $this->_authorizationCode;
+    }
+
+	/**
+     * @param string $authorizationCode
+     * @return self
+     */
+    public function setAuthorizationCode($authorizationCode)
+    {
+        $this->_authorizationCode = $authorizationCode;
         return $this;
     }
 
