@@ -337,6 +337,13 @@ class AuthorizationCode extends AbstractAuthorizationGrant
             throw new Exception('Invalid Http client');
         }
         
+        $accessTokenUrl = $this->getAccessTokenUrl();
+        
+        // Handle invalid access token url
+        if(empty($accessTokenUrl)) {
+            throw new Exception('Access token URL is not specified');
+        }
+        
         $postData = array(
             'grant_type' => $this->getType(),
             'code' => '',
@@ -348,7 +355,7 @@ class AuthorizationCode extends AbstractAuthorizationGrant
             $postData = array_merge($postData, $data);
         }
         
-        return $httpClient->post($this->getAccessTokenUrl(), $postData);
+        return $httpClient->post($accessTokenUrl, $postData);
     }
 
     /**
