@@ -85,7 +85,7 @@ abstract class AbstractAuthorizationGrant implements AuthorizationGrantInterface
     public function setOption($name = '', $value = null)
     {
         // Assemble setter name
-        $setter = 'set' . _underscoreToUpperCase($name);
+        $setter = 'set' . $this->_underscoreToUpperCase($name);
         
         // Handle unexisting setter
         if (! method_exists($this, $setter)) {
@@ -115,7 +115,7 @@ abstract class AbstractAuthorizationGrant implements AuthorizationGrantInterface
     public function getOption($name = '')
     {
         // Assemble setter name
-        $getter = 'set' . _underscoreToUpperCase($name);
+        $getter = 'set' . $this->_underscoreToUpperCase($name);
     
         // Handle unexisting setter
         if (! method_exists($this, $getter)) {
