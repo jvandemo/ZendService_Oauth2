@@ -21,10 +21,11 @@
  */
 namespace ZendService\Oauth2\Client;
 
-use Zend\Http\Client as HttpClient;
 use ZendService\Oauth2\AuthorizationGrant\AuthorizationCode;
 use ZendService\Oauth2\AuthorizationGrant\AuthorizationGrantInterface;
 use ZendService\Oauth2\Client\ClientInterface;
+use ZendService\Oauth2\Http\Client\Client as HttpClient;
+use ZendService\Oauth2\Http\Client\ClientInterface as HttpClientInterface;
 
 /**
  * @category   Zend
@@ -99,22 +100,25 @@ class AbstractClient implements ClientInterface
     /**
      * Get HTTP client
      *
-     * @return \Zend\Http\Client
+     * @return \ZendService\Oauth2\Http\ClientInterface
      */
     public function getHttpClient()
     {
+        if(null === $this->_httpClient) {
+            $this->_httpClient = new HttpClient();
+        }
         return $this->_httpClient;
     }
 
     /**
      * Set HTTP client
      *
-     * @param \Zend\Http\Client $httpClient
+     * @param \ZendService\Oauth2\Http\Client\ClientInterface $httpClient
      * @return self
      */
     public function setHttpClient($httpClient)
     {
-        if ($httpClient instanceof HttpClient) {
+        if ($httpClient instanceof HttpClientInterface) {
             $this->_httpClient = $httpClient;
         }
         return $this;
