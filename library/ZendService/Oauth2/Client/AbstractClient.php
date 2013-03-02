@@ -36,6 +36,20 @@ class AbstractClient implements ClientInterface
 {
 
     /**
+     * Key of configuration for authorization grant
+     *
+     * @var string
+     */
+    const OPTIONS_KEY_AUTHORIZATION_GRANT = 'client';
+    
+    /**
+     * Key of configuration for http client
+     *
+     * @var string
+     */
+    const OPTIONS_KEY_HTTP_CLIENT = 'http';
+    
+    /**
      * Convenience placeholder for options that are passed to the constructor
      *
      * These options are passed to the authorizationGrant when it is instantiated
@@ -56,7 +70,7 @@ class AbstractClient implements ClientInterface
     /**
      * HTTP client placeholder
      *
-     * @var \Zend\Http\Client
+     * @var \ZendService\Oauth2\Http\Client\ClientInterface
      */
     protected $_httpClient = null;
 
@@ -78,7 +92,9 @@ class AbstractClient implements ClientInterface
     public function getAuthorizationGrant()
     {
         if (null === $this->_authorizationGrant) {
-            $this->_authorizationGrant = new AuthorizationCode($this->_options);
+            $options = array_key_exists(self::OPTIONS_KEY_AUTHORIZATION_GRANT, $this->_options) ? $this->_options[self::OPTIONS_KEY_AUTHORIZATION_GRANT] : array();
+            error_log(__METHOD__ . serialize($options));
+            $this->_authorizationGrant = new AuthorizationCode($options);
         }
         return $this->_authorizationGrant;
     }
@@ -104,8 +120,10 @@ class AbstractClient implements ClientInterface
      */
     public function getHttpClient()
     {
-        if(null === $this->_httpClient) {
-            $this->_httpClient = new HttpClient();
+        if (null === $this->_httpClient) {
+            $options = array_key_exists(self::OPTIONS_KEY_HTTP_CLIENT, $this->_options) ? $this->_options[self::OPTIONS_KEY_HTTP_CLIENT] : array();
+            error_log(__METHOD__ . serialize($options));
+            $this->_httpClient = new HttpClient($options);
         }
         return $this->_httpClient;
     }
@@ -131,7 +149,7 @@ class AbstractClient implements ClientInterface
      *
      * @return string Authorization request URL
      */
-    public function getAuthorizationRequestUrl()
+    public function getAuthorizationRequestUrl($data)
     {
         return $this->getAuthorizationGrant()->getAuthorizationRequestUrl();
     }
@@ -143,9 +161,11 @@ class AbstractClient implements ClientInterface
      *
      * @return \ZendService\Oauth2\AccessToken\AccessTokenInterface
      */
-    public function getAccessToken()
+    public function getAccessToken($data)
     {
-        return $this->getAuthorizationGrant()->getAccessToken();
+        return $this->getAuthorizationGrant()->getAccessToken(
+                $this->getHttpClient(),
+                $data);
     }
 
     /**
@@ -155,8 +175,10 @@ class AbstractClient implements ClientInterface
      *
      * @return \ZendService\Oauth2\RefreshToken\RefreshTokenInterface
      */
-    public function getRefreshToken()
+    public function getRefreshToken($data)
     {
-        return $this->getAuthorizationGrant()->getRefreshToken();
+        return $this->getAuthorizationGrant()->getRefreshToken(
+                $this->getHttpClient(),
+                $data);
     }
 }
