@@ -11,6 +11,8 @@
 namespace ZendService\Oauth2\AuthorizationGrant;
 
 use ZendService\Oauth2\AuthorizationGrant\AbstractAuthorizationGrant;
+use ZendService\Oauth2\AuthorizationGrant\Exception\Exception;
+use ZendService\Oauth2\Http\Client\ClientInterface as HttpClientInterface;
 
 /**
  * @category   Zend
@@ -40,7 +42,14 @@ class AuthorizationCode extends AbstractAuthorizationGrant
      * @var string
      */
     protected $_responseType = 'code';
-
+    
+    /**
+     * Grant type
+     *
+     * @var string
+     */
+    protected $_type = 'authorization_code';
+    
     /**
      * Authorization URL
      *
@@ -152,8 +161,26 @@ class AuthorizationCode extends AbstractAuthorizationGrant
         $this->_responseType = $responseType;
         return $this;
     }
-
+    
     /**
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->_type;
+    }
+
+	/**
+     * @param string $type
+     * @return self
+     */
+    public function setType($type)
+    {
+        $this->_type = $type;
+        return $this;
+    }
+
+	/**
      * @return string
      */
     public function getAccessTokenUrl()
@@ -298,9 +325,42 @@ class AuthorizationCode extends AbstractAuthorizationGrant
         return $this->getAuthorizationUrl() . '?' . http_build_query($queryData);
     }
 
-    public function getAccessToken()
-    {}
+    /**
+     * (non-PHPdoc)
+     * @see \ZendService\Oauth2\AuthorizationGrant\AuthorizationGrantInterface::getAccessToken()
+     */
+    public function getAccessToken($httpClient = null, $data = array())
+    {
+        
+        // Handle invalid http client
+        if(! $httpClient instanceof HttpClientInterface) {
+            throw new Exception('Invalid Http client');
+        }
+        
+        $postData = array(
+            'grant_type' => $this->getType(),
+            'code' => '',
+            'redirect_uri' => $this->getRedirectUri(),
+            'client_id' => $this->getClientId(),
+        );
+        
+        if (is_array($data)) {
+            $postData = array_merge($postData, $data);
+        }
+        
+        return $httpClient->post($this->getAccessTokenUrl(), $postData);
+    }
 
-    public function getRefreshToken()
-    {}
+    /**
+     * (non-PHPdoc)
+     * @see \ZendService\Oauth2\AuthorizationGrant\AuthorizationGrantInterface::getRefreshToken()
+     */
+    public function getRefreshToken($httpClient = null, $data = array())
+    {
+        
+        // Handle invalid http client
+        if(! $httpClient instanceof HttpClientInterface) {
+            throw new Exception('Invalid Http client');
+        }
+    }
 }

@@ -17,6 +17,7 @@ namespace ZendService\Oauth2\AuthorizationGrant;
  */
 interface AuthorizationGrantInterface
 {
+
     /**
      * Get URL for authorization request
      *
@@ -24,18 +25,20 @@ interface AuthorizationGrantInterface
      * @return string Authorization request URL
      */
     public function getAuthorizationRequestUrl($data);
-    
+
     /**
      * Get access token
      *
+     * @param \ZendService\Oauth2\Http\Client\ClientInterface $httpClient Http client to delegate request to
      * @return \ZendService\Oauth2\AccessToken\AccessTokenInterface
      */
-    public function getAccessToken();
-    
+    public function getAccessToken($httpClient);
+
     /**
      * Get refresh token
      *
+     * @param \ZendService\Oauth2\Http\Client\ClientInterface $httpClient Http client to delegate request to
      * @return \ZendService\Oauth2\RefreshToken\RefreshTokenInterface
      */
-    public function getRefreshToken();
+    public function getRefreshToken($httpClient);
 }
