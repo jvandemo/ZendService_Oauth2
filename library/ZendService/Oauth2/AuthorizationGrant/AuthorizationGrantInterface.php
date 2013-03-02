@@ -20,9 +20,10 @@ interface AuthorizationGrantInterface
     /**
      * Get URL for authorization request
      *
+     * @param array $data Associative array with data to add to query parameters
      * @return string Authorization request URL
      */
-    public function getAuthorizationRequestUrl();
+    public function getAuthorizationRequestUrl($data);
     
     /**
      * Get access token

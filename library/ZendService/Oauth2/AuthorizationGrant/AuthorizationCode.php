@@ -26,21 +26,21 @@ class AuthorizationCode extends AbstractAuthorizationGrant
      * @var string
      */
     protected $_clientId = '';
-    
+
     /**
      * Client secret
      *
      * @var string
      */
     protected $_clientSecret = '';
-    
+
     /**
      * Response type
      *
      * @var string
      */
     protected $_responseType = 'code';
-    
+
     /**
      * Authorization URL
      *
@@ -49,8 +49,7 @@ class AuthorizationCode extends AbstractAuthorizationGrant
      * @var string
      */
     protected $_authorizationUrl = '';
-    
-    
+
     /**
      * Authorization code
      *
@@ -60,7 +59,7 @@ class AuthorizationCode extends AbstractAuthorizationGrant
      * @var string
      */
     protected $_authorizationCode = '';
-    
+
     /**
      * Access token URL
      *
@@ -69,7 +68,7 @@ class AuthorizationCode extends AbstractAuthorizationGrant
      * @var string
      */
     protected $_accessTokenUrl = '';
-    
+
     /**
      * Request token URL
      *
@@ -78,29 +77,29 @@ class AuthorizationCode extends AbstractAuthorizationGrant
      * @var string
      */
     protected $_requestTokenUrl = '';
-    
+
     /**
      * Redirect URL
      *
      * @var string
      */
     protected $_redirectUri = '';
-    
+
     /**
      * Scope
      *
      * @var string
      */
     protected $_scope = '';
-    
+
     /**
      * State
      *
      * @var string
      */
     protected $_state = '';
-                
-	/**
+
+    /**
      * @return string
      */
     public function getClientId()
@@ -108,7 +107,7 @@ class AuthorizationCode extends AbstractAuthorizationGrant
         return $this->_clientId;
     }
 
-	/**
+    /**
      * @param string $clientId
      * @return self
      */
@@ -118,7 +117,7 @@ class AuthorizationCode extends AbstractAuthorizationGrant
         return $this;
     }
 
-	/**
+    /**
      * @return string
      */
     public function getClientSecret()
@@ -126,7 +125,7 @@ class AuthorizationCode extends AbstractAuthorizationGrant
         return $this->_clientSecret;
     }
 
-	/**
+    /**
      * @param string $clientSecret
      * @return self
      */
@@ -136,7 +135,7 @@ class AuthorizationCode extends AbstractAuthorizationGrant
         return $this;
     }
 
-	/**
+    /**
      * @return string
      */
     public function getResponseType()
@@ -144,7 +143,7 @@ class AuthorizationCode extends AbstractAuthorizationGrant
         return $this->_responseType;
     }
 
-	/**
+    /**
      * @param string $responseType
      * @return self
      */
@@ -153,8 +152,8 @@ class AuthorizationCode extends AbstractAuthorizationGrant
         $this->_responseType = $responseType;
         return $this;
     }
-    
-	/**
+
+    /**
      * @return string
      */
     public function getAccessTokenUrl()
@@ -162,7 +161,7 @@ class AuthorizationCode extends AbstractAuthorizationGrant
         return $this->_accessTokenUrl;
     }
 
-	/**
+    /**
      * @param string $accessTokenUrl
      * @return self
      */
@@ -172,7 +171,7 @@ class AuthorizationCode extends AbstractAuthorizationGrant
         return $this;
     }
 
-	/**
+    /**
      * @return string
      */
     public function getRequestTokenUrl()
@@ -180,7 +179,7 @@ class AuthorizationCode extends AbstractAuthorizationGrant
         return $this->_requestTokenUrl;
     }
 
-	/**
+    /**
      * @param string $requestTokenUrl
      * @return self
      */
@@ -189,7 +188,7 @@ class AuthorizationCode extends AbstractAuthorizationGrant
         $this->_requestTokenUrl = $requestTokenUrl;
         return $this;
     }
-    
+
     /**
      * @return string
      */
@@ -198,7 +197,7 @@ class AuthorizationCode extends AbstractAuthorizationGrant
         return $this->_authorizationUrl;
     }
 
-	/**
+    /**
      * @param string $authorizationUrl
      * @return self
      */
@@ -207,8 +206,8 @@ class AuthorizationCode extends AbstractAuthorizationGrant
         $this->_authorizationUrl = $authorizationUrl;
         return $this;
     }
-    
-	/**
+
+    /**
      * @return string
      */
     public function getAuthorizationCode()
@@ -216,7 +215,7 @@ class AuthorizationCode extends AbstractAuthorizationGrant
         return $this->_authorizationCode;
     }
 
-	/**
+    /**
      * @param string $authorizationCode
      * @return self
      */
@@ -226,7 +225,7 @@ class AuthorizationCode extends AbstractAuthorizationGrant
         return $this;
     }
 
-	/**
+    /**
      * @return string
      */
     public function getRedirectUri()
@@ -234,7 +233,7 @@ class AuthorizationCode extends AbstractAuthorizationGrant
         return $this->_redirectUri;
     }
 
-	/**
+    /**
      * @param string $redirectUri
      * @return self
      */
@@ -244,7 +243,7 @@ class AuthorizationCode extends AbstractAuthorizationGrant
         return $this;
     }
 
-	/**
+    /**
      * @return string
      */
     public function getScope()
@@ -252,7 +251,7 @@ class AuthorizationCode extends AbstractAuthorizationGrant
         return $this->_scope;
     }
 
-	/**
+    /**
      * @param string $scope
      * @return self
      */
@@ -262,7 +261,7 @@ class AuthorizationCode extends AbstractAuthorizationGrant
         return $this;
     }
 
-	/**
+    /**
      * @return string
      */
     public function getState()
@@ -270,7 +269,7 @@ class AuthorizationCode extends AbstractAuthorizationGrant
         return $this->_state;
     }
 
-	/**
+    /**
      * @param string $state
      * @return self
      */
@@ -284,25 +283,24 @@ class AuthorizationCode extends AbstractAuthorizationGrant
      * (non-PHPdoc)
      * @see \ZendService\Oauth2\AuthorizationGrant\AuthorizationGrantInterface::getAuthorizationUrl()
      */
-    public function getAuthorizationRequestUrl()
+    public function getAuthorizationRequestUrl($data = array())
     {
         $queryData = array(
             'response_type' => $this->getResponseType(),
             'client_id' => $this->getClientId(),
             'redirect_uri' => $this->getRedirectUri(),
             'scope' => $this->getScope(),
-            'state' => $this->getState(),
+            'state' => $this->getState()
         );
+        if (is_array($data)) {
+            $queryData = array_merge($queryData, $data);
+        }
         return $this->getAuthorizationUrl() . '?' . http_build_query($queryData);
     }
-    
+
     public function getAccessToken()
-    {
-        
-    }
-    
+    {}
+
     public function getRefreshToken()
-    {
-        
-    }
+    {}
 }
