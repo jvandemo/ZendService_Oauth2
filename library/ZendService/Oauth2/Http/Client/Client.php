@@ -16,7 +16,7 @@
 
 namespace ZendService\Oauth2\Http\Client;
 
-use ZendService\Oauth2\Http\ClientInterface;
+use ZendService\Oauth2\Http\Client\ClientInterface;
 use Zend\Http\ClientStatic;
 
 /**
