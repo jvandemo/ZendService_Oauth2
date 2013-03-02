@@ -12,20 +12,19 @@
  *
  * Delegates to Zend\Http\ClientStatic
  *
- * Allows for a custom HTTP client and can be replaced by mock client for testing purposes
  */
 
-namespace ZendService\Oauth2\Http;
+namespace ZendService\Oauth2\Http\Client;
 
-use ZendService\Oauth2\Http\AbstractClient;
+use ZendService\Oauth2\Http\ClientInterface;
 use Zend\Http\ClientStatic;
 
 /**
  * @category   Zend
  * @package    ZendService_Oauth2
- * @subpackage Client
+ * @subpackage Http
  */
-class Client extends AbstractClient
+class Client implements ClientInterface
 {
     
     /**

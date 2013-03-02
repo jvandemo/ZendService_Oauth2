@@ -6,13 +6,16 @@
  * @copyright Copyright (c) 2005-2013 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  * @package   ZendService_Oauth2
+ *
+ * Allows for a custom HTTP client and can be replaced by mock client for testing purposes
  */
 
-namespace ZendService\Oauth2\Http;
+namespace ZendService\Oauth2\Http\Client;
 
 /**
  * @category   Zend
  * @package    ZendService_Oauth2
+ * @subpackage Http
  */
 interface ClientInterface
 {
