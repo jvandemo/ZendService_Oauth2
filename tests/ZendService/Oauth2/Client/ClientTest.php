@@ -44,7 +44,6 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        echo 'setup';
     }
 
     public function tearDown()
