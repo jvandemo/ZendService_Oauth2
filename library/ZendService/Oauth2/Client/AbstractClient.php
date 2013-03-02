@@ -93,7 +93,6 @@ class AbstractClient implements ClientInterface
     {
         if (null === $this->_authorizationGrant) {
             $options = array_key_exists(self::OPTIONS_KEY_AUTHORIZATION_GRANT, $this->_options) ? $this->_options[self::OPTIONS_KEY_AUTHORIZATION_GRANT] : array();
-            error_log(__METHOD__ . serialize($options));
             $this->_authorizationGrant = new AuthorizationCode($options);
         }
         return $this->_authorizationGrant;
@@ -122,7 +121,6 @@ class AbstractClient implements ClientInterface
     {
         if (null === $this->_httpClient) {
             $options = array_key_exists(self::OPTIONS_KEY_HTTP_CLIENT, $this->_options) ? $this->_options[self::OPTIONS_KEY_HTTP_CLIENT] : array();
-            error_log(__METHOD__ . serialize($options));
             $this->_httpClient = new HttpClient($options);
         }
         return $this->_httpClient;
