@@ -41,10 +41,17 @@ try{
     <?php var_dump($client->getAuthorizationRequestUrl()); ?>
     </pre>
     
+    <h4>Access token request response</h4>
+    <pre>
+    <?php var_dump($client->getAccessToken()); ?>
+    </pre>
+    
+    <?php /*
     <h4>HTTP client test</h4>
     <pre>
     <?php var_dump($httpClient->get('http://www.google.com')); ?>
     </pre>
+    */?>
 
 <?php
 } catch(\Exception $e) {
