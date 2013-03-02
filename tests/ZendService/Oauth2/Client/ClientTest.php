@@ -11,6 +11,7 @@
 namespace ZendServiceTest\Oauth2\Client;
 
 use ZendService\Oauth2\Client\Client;
+use ZendService\Oauth2\AuthorizationGrant\AuthorizationCode;
 
 /**
  * @category   Zend
@@ -38,10 +39,12 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         if(null === $this->_client) {
             $this->_client = new Client();
         }
+        return $this->_client;
     }
 
     public function setUp()
     {
+        echo 'setup';
     }
 
     public function tearDown()
@@ -51,6 +54,11 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     public function testGetClient()
     {
         $this->assertNotNull($this->getClient());
+    }
+    
+    public function testClientAuthorizationGrantIsAuthorizationCodeByDefault()
+    {
+        $this->assertTrue($this->getClient()->getAuthorizationGrant() instanceof AuthorizationCode);
     }
 
 }
