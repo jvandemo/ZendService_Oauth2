@@ -56,9 +56,9 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         $this->assertNotNull($this->getClient());
     }
     
-    public function testClientAuthorizationGrantIsAuthorizationCodeByDefault()
+    public function testAuthorizationGrantIsAuthorizationCodeByDefault()
     {
         $this->assertTrue($this->getClient()->getAuthorizationGrant() instanceof AuthorizationCode);
     }
-
+    
 }
