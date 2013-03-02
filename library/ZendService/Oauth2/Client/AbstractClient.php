@@ -41,14 +41,14 @@ class AbstractClient implements ClientInterface
      * @var string
      */
     const OPTIONS_KEY_AUTHORIZATION_GRANT = 'client';
-    
+
     /**
      * Key of configuration for http client
      *
      * @var string
      */
     const OPTIONS_KEY_HTTP_CLIENT = 'http';
-    
+
     /**
      * Convenience placeholder for options that are passed to the constructor
      *
@@ -92,7 +92,8 @@ class AbstractClient implements ClientInterface
     public function getAuthorizationGrant()
     {
         if (null === $this->_authorizationGrant) {
-            $options = array_key_exists(self::OPTIONS_KEY_AUTHORIZATION_GRANT, $this->_options) ? $this->_options[self::OPTIONS_KEY_AUTHORIZATION_GRANT] : array();
+            $options = array_key_exists(self::OPTIONS_KEY_AUTHORIZATION_GRANT,
+                    $this->_options) ? $this->_options[self::OPTIONS_KEY_AUTHORIZATION_GRANT] : array();
             $this->_authorizationGrant = new AuthorizationCode($options);
         }
         return $this->_authorizationGrant;
@@ -120,7 +121,8 @@ class AbstractClient implements ClientInterface
     public function getHttpClient()
     {
         if (null === $this->_httpClient) {
-            $options = array_key_exists(self::OPTIONS_KEY_HTTP_CLIENT, $this->_options) ? $this->_options[self::OPTIONS_KEY_HTTP_CLIENT] : array();
+            $options = array_key_exists(self::OPTIONS_KEY_HTTP_CLIENT,
+                    $this->_options) ? $this->_options[self::OPTIONS_KEY_HTTP_CLIENT] : array();
             $this->_httpClient = new HttpClient($options);
         }
         return $this->_httpClient;

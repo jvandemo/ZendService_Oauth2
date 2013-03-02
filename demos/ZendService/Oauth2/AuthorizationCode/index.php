@@ -22,7 +22,7 @@ use ZendService\Oauth2\Client\Client as Client;
 try{
 ?>
     <?php
-    $client = new Client($config['client']);
+    $client = new Client($config);
     $httpClient = new \ZendService\Oauth2\Http\Client\Client();
     ?>
     
