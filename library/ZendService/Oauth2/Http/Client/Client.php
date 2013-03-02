@@ -11,6 +11,8 @@
  * HTTP client used to perform the HTTP requests
  *
  * Delegates to Zend\Http\ClientStatic
+ *
+ * Allows for a custom HTTP client and can be replaced by mock client for testing purposes
  */
 
 namespace ZendService\Oauth2\Http;
