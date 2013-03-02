@@ -11,8 +11,6 @@
 namespace ZendService\Oauth2\AuthorizationGrant;
 
 use ZendService\Oauth2\AuthorizationGrant\AbstractAuthorizationGrant;
-use ZendService;
-use ZendService\Oauth2\AuthorizationGrant\Exception\Exception;
 
 /**
  * @category   Zend
@@ -69,7 +67,7 @@ class AuthorizationCode extends AbstractAuthorizationGrant
      *
      * @var string
      */
-    protected $_redirectUrl = '';
+    protected $_redirectUri = '';
     
     /**
      * Scope
@@ -196,18 +194,18 @@ class AuthorizationCode extends AbstractAuthorizationGrant
 	/**
      * @return string
      */
-    public function getRedirectUrl()
+    public function getRedirectUri()
     {
-        return $this->_redirectUrl;
+        return $this->_redirectUri;
     }
 
 	/**
-     * @param string $redirectUrl
+     * @param string $redirectUri
      * @return self
      */
-    public function setRedirectUrl($redirectUrl)
+    public function setRedirectUri($redirectUri)
     {
-        $this->_redirectUrl = $redirectUrl;
+        $this->_redirectUri = $redirectUri;
         return $this;
     }
 
@@ -253,7 +251,14 @@ class AuthorizationCode extends AbstractAuthorizationGrant
      */
     public function getAuthorizationRequestUrl()
     {
-        
+        $queryData = array(
+            'response_type' => $this->getResponseType(),
+            'client_id' => $this->getClientId(),
+            'redirect_uri' => $this->getRedirectUri(),
+            'scope' => $this->getScope(),
+            'state' => $this->getState(),
+        );
+        return $this->getAuthorizationUrl() . '?' . http_build_query($queryData);
     }
     
     public function getAccessToken()
