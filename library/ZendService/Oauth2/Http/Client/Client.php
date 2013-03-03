@@ -8,7 +8,7 @@
  * @package   Zend_View
  * @link      http://tools.ietf.org/html/draft-ietf-oauth-v2-31 Oauth 2.0 draft
  *
- * HTTP client used to perform the HTTP requests
+ * Default implementation of HTTP client used to perform the HTTP requests
  *
  * Delegates to Zend\Http\Client
  *
