@@ -370,4 +370,36 @@ class AuthorizationCode extends AbstractAuthorizationGrant
             throw new Exception('Invalid Http client');
         }
     }
+    
+    /**
+     * (non-PHPdoc)
+     * @see \ZendService\Oauth2\AuthorizationGrant\AuthorizationGrantInterface::get()
+     */
+    public function get($httpClient, $url, $query = array(), $headers = array(), $body = null)
+    {
+        // Handle invalid http client
+        if(! $httpClient instanceof HttpClientInterface) {
+            throw new Exception('Invalid Http client');
+        }
+        
+        // Prepare request with access token
+        
+        // Send request
+    }
+    
+    /**
+     * (non-PHPdoc)
+     * @see \ZendService\Oauth2\AuthorizationGrant\AuthorizationGrantInterface::post()
+     */
+    public function post($httpClient, $url, $params, $headers = array(), $body = null)
+    {
+        // Handle invalid http client
+        if(! $httpClient instanceof HttpClientInterface) {
+            throw new Exception('Invalid Http client');
+        }
+        
+        // Prepare request with access token
+        
+        // Send request
+    }
 }

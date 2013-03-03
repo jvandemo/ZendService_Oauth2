@@ -181,4 +181,44 @@ class AbstractClient implements ClientInterface
                 $this->getHttpClient(),
                 $data);
     }
+
+    /**
+     * Perform GET request
+     *
+     * @param string $url
+     * @param array $query
+     * @param array $headers
+     * @param string $body
+     *
+     * @return mixed Response
+     */
+    public function get($url, $query = array(), $headers = array(), $body = null)
+    {
+        return $this->getAuthorizationGrant()->get(
+                $this->getHttpClient(),
+                $url,
+                $query,
+                $headers,
+                $body);
+    }
+    
+    /**
+     * Perform POST request
+     *
+     * @param string $url
+     * @param array $params
+     * @param array $headers
+     * @param string $body
+     *
+     * @return mixed Response
+     */
+    public function post($url, $params, $headers = array(), $body = null)
+    {
+        return $this->getAuthorizationGrant()->post(
+                $this->getHttpClient(),
+                $url,
+                $params,
+                $headers,
+                $body);
+    }
 }

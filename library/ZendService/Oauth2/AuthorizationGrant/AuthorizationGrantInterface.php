@@ -41,4 +41,30 @@ interface AuthorizationGrantInterface
      * @return \ZendService\Oauth2\RefreshToken\RefreshTokenInterface
      */
     public function getRefreshToken($httpClient);
+    
+    /**
+     * Perform GET request
+     *
+     * @param \ZendService\Oauth2\Http\Client\ClientInterface $httpClient Http client to delegate request to
+     * @param string $url
+     * @param array $query
+     * @param array $headers
+     * @param string $body
+     *
+     * @return mixed Response
+     */
+    public function get($httpClient, $url, $query = array(), $headers = array(), $body = null);
+        
+    /**
+     * Perform POST request
+     *
+     * @param \ZendService\Oauth2\Http\Client\ClientInterface $httpClient Http client to delegate request to
+     * @param string $url
+     * @param array $params
+     * @param array $headers
+     * @param string $body
+     *
+     * @return mixed Response
+     */
+    public function post($httpClient, $url, $params, $headers = array(), $body = null);
 }
