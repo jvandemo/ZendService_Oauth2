@@ -344,13 +344,19 @@ class AuthorizationCode extends AbstractAuthorizationGrant
             throw new Exception('Access token URL is not specified');
         }
         
+        // Handle invalid code
+        if(! array_key_exists('code', $data)) {
+            throw new Exception('Please specify the authorization code in the data array');
+        }
+        
         $postData = array(
             'grant_type' => $this->getType(),
-            'code' => '',
             'redirect_uri' => $this->getRedirectUri(),
             'client_id' => $this->getClientId(),
+            'client_secret' => $this->getClientSecret(),
         );
         
+        // Merge code in postData
         if (is_array($data)) {
             $postData = array_merge($postData, $data);
         }
