@@ -108,3 +108,7 @@ or POST requests:
 ```
 $response = $client->post('http://api.youwishtoconnect.to/some_endpoint', array('param1', 'value1'));
 ```
+
+### Suggestions?
+
+Contact me, write a comment or better yet: fork, implement and create a pull request :-)
