@@ -149,7 +149,7 @@ class AbstractClient implements ClientInterface
      *
      * @return string Authorization request URL
      */
-    public function getAuthorizationRequestUrl($data)
+    public function getAuthorizationRequestUrl($data = array())
     {
         return $this->getAuthorizationGrant()->getAuthorizationRequestUrl();
     }
@@ -161,7 +161,7 @@ class AbstractClient implements ClientInterface
      *
      * @return \ZendService\Oauth2\AccessToken\AccessTokenInterface
      */
-    public function getAccessToken($data)
+    public function getAccessToken($data = array())
     {
         return $this->getAuthorizationGrant()->getAccessToken(
                 $this->getHttpClient(),
@@ -175,7 +175,7 @@ class AbstractClient implements ClientInterface
      *
      * @return \ZendService\Oauth2\RefreshToken\RefreshTokenInterface
      */
-    public function getRefreshToken($data)
+    public function getRefreshToken($data = array())
     {
         return $this->getAuthorizationGrant()->getRefreshToken(
                 $this->getHttpClient(),
