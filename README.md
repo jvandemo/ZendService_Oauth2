@@ -36,6 +36,20 @@ $config = array(
 // Create client
 $client = new Client($config);
 
+// Get authorization URL
 $url = $client->getAuthorizationRequestUrl()
 
+// Redirect to authorization page
+...
+
+// Get access token
+$client->getAccessToken(array(
+	'code' => 'code_your_received_from_authorization_server'
+));
+
+// Perform GET request
+$response = $client->get('http://api.youwishtoconnect.to/some_endpoint', array('param1', 'value1'));
+
+// Perform POST request
+$response = $client->post('http://api.youwishtoconnect.to/some_endpoint', array('param1', 'value1'));
 ```
