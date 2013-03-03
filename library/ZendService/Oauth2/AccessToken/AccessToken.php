@@ -83,7 +83,7 @@ class AccessToken implements AccessTokenInterface
     {
         $data = Json::decode($json);
         
-        return $this->fromArray($data);
+        return $this->fromArray((array) $data);
     }
 
     /**
