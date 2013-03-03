@@ -63,7 +63,7 @@ class Client implements ClientInterface
     protected function _getZendHttpClient()
     {
         if(null === $this->_zendHttpClient) {
-            $this->_zendHttpClient = new ZendHttpClient($this->_options);
+            $this->_zendHttpClient = new ZendHttpClient(null, $this->_options);
         }
         return $this->_zendHttpClient;
     }
