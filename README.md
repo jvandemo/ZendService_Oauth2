@@ -3,9 +3,27 @@ ZendService_Oauth2
 
 Oauth2 service for Zend Framework 2
 
+### Features
+
+- Provides a main client class to interact with for ease of use (ZendService\Oauth2\Client\Client class)
+- Supports custom client class to add or change behaviours
+    + Can extend `ZendService\Oauth2\Client\AbstractClient`
+    + Must implement `ZendService\Oauth2\Client\ClientInterface`
+- Supports custom Oauth2.0 flows by supporting custom authorization grant types:
+    + Can extend `ZendService\Oauth2\AuthorizationGrant\AbstractAuthorizationGrant`
+    + Must implement `ZendService\Oauth2\AuthorizationGrant\AuthorizationGrantInterface`
+- Supports custom Http clients
+    + Must implement `ZendService\Oauth2\Http\Client\ClientInterface`
+    + Uses the `Zend\Http\Client` by default 
+
 ### Status
 
 Currently under development so please don't use in production environments yet...
+
+### To do
+
+- Write more and better documentation
+- Implement automatic state generation and persistance
 
 ### Live demo
 
@@ -15,7 +33,7 @@ The source of the demo page is included in the `demos` folder.
 
 ### Quick code walkthrough
 
-First specify your private oauth2.0 details in the config array:
+Start by specifying your private oauth2.0 details in a config array:
 
 ```
 use ZendService\Oauth2\Client\Client;
