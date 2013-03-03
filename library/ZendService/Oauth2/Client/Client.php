@@ -44,16 +44,19 @@ class Client extends AbstractClient
      */
     public function getAccessToken($data = array())
     {
+        
+        // Send http request
         $response = $this->getAuthorizationGrant()->getAccessToken(
                 $this->getHttpClient(),
                 $data);
         
+        // Handle invalid response
         if(! $response->isSuccess()) {
             throw new Exception('Request for access token failed: ' . $response->renderStatusLine());
         }
         
+        // Create and return access token
         $json = $response->getBody();
-        
         return new AccessToken($json);
     }
     
