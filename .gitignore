@@ -12,3 +12,5 @@ vendor/
 
 # Ignore local files
 *.local.php
+/deployment.properties
+/deployment.xml
