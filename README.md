@@ -57,7 +57,8 @@ $url = $client->getAuthorizationRequestUrl()
 Redirect the user to the authorization request url:
 
 ```
-
+// Sample to redirect from within your controller
+return $this->redirect()->toUrl($url);
 ```
 
 Grab the access token from the authorization response:
