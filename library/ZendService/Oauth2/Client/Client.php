@@ -8,7 +8,7 @@
  * @package   Zend_View
  * @link      http://tools.ietf.org/html/draft-ietf-oauth-v2-31 Oauth 2.0 draft
  *
- * General Oauth 2.0 client class that delegates actions to an
+ * Zend Framework 2 Oauth 2.0 client class that delegates actions to an
  * authorization grant.
  *
  * An authorization grant represents an authorization flow and contains
@@ -21,7 +21,9 @@
  */
 namespace ZendService\Oauth2\Client;
 
+use ZendService\Oauth2\AccessToken\AccessToken;
 use ZendService\Oauth2\Client\AbstractClient;
+use ZendService\Oauth2\Client\Exception\Exception;
 
 /**
  * @category   Zend
@@ -31,4 +33,28 @@ use ZendService\Oauth2\Client\AbstractClient;
 class Client extends AbstractClient
 {
 
+    /**
+     * Get access token
+     *
+     * Overrides the abstract function to implement specific
+     * ZF2 behaviour
+     *
+     * @param array $data Data that needs to be passed to access token request e.g. code
+     * @return \ZendService\Oauth2\AccessToken\AccessTokenInterface
+     */
+    public function getAccessToken($data = array())
+    {
+        $response = $this->getAuthorizationGrant()->getAccessToken(
+                $this->getHttpClient(),
+                $data);
+        
+        if(! $response->isSuccess()) {
+            throw new Exception('Request for access token failed: ' . $response->renderStatusLine());
+        }
+        
+        $json = $response->getBody();
+        
+        return new AccessToken($json);
+    }
+    
 }
