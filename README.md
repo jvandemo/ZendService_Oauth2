@@ -15,6 +15,8 @@ The source of the demo page is included in the `demos` folder.
 
 ### Code sample
 
+First specify your private oauth2.0 details in the config array:
+
 ```
 use ZendService\Oauth2\Client\Client;
 
@@ -38,24 +40,48 @@ $config = array(
         ),
     ),
 );
+```
 
-// Create client
+Create a new Oauth2.0 client and pass the config:
+
+```
 $client = new Client($config);
+```
 
-// Get authorization URL
+Let ZendService_Oauth2 build the authorization request for you:
+
+```
 $url = $client->getAuthorizationRequestUrl()
+```
 
-// Redirect to authorization page
-...
+Redirect the user to the authorization request url:
 
-// Get access token
+```
+
+```
+
+Grab the access token from the authorization response:
+
+```
+$code = $_GET['code'];
+```
+
+Use the authorization code to get an access token: 
+
+```
 $client->getAccessToken(array(
-	'code' => 'code_your_received_from_authorization_server'
+	'code' => $code
 ));
+```
 
-// Perform GET request
+Once you have an access token, you can easily perform GET requests:
+
+```
 $response = $client->get('http://api.youwishtoconnect.to/some_endpoint', array('param1', 'value1'));
+```
 
-// Perform POST request
+or POST requests:
+
+```
 $response = $client->post('http://api.youwishtoconnect.to/some_endpoint', array('param1', 'value1'));
 ```
