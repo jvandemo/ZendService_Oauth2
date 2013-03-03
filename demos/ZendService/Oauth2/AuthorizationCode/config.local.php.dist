@@ -7,7 +7,8 @@ return array(
 	    'client_secret' => 'your_client_secret',
 	    'authorization_url' => 'https://api.youwishtoconnect.to/authorize',
 	    'access_token_url' => 'https://api.youwishtoconnect.to/access_token',
-	    'redirect_uri' => 'http://www.yourwebsite.com/where_to_go_after_authorization'
+	    'redirect_uri' => 'http://www.yourwebsite.com/where_to_go_after_authorization',
+	    'state' => 'test',
     ),
     
     // Http client options
