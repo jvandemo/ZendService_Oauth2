@@ -29,6 +29,7 @@ $code = (isset($_GET['code'])) ? $_GET['code'] : null;
   
     <head lang="en">
         <meta charset="utf-8">
+        <meta name="author" content="Jurgen Van de Moere">
         <title>ZendService Oauth2 demo page</title>
     <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
     </head>
@@ -42,6 +43,9 @@ $code = (isset($_GET['code'])) ? $_GET['code'] : null;
                     <div class="page-header">
                         <h1>ZendService_Oauth2 <small>demo page</small></h1>
                     </div>
+                    
+                    <p>ZendService_Oauth2 is a service to provide Oauth2.0 functionality in Zend Framework 2.</p>
+                    <p><a class="btn btn-info" href="https://github.com/jvandemo/ZendService_Oauth2">View complete source on GitHub</a></p><br>
             
                     <?php
                     try{
