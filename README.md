@@ -3,23 +3,6 @@ ZendService_Oauth2
 
 Oauth2 service for Zend Framework 2
 
-### Features
-
-- Provides a main `ZendService\Oauth2\Client\Client` class to interact with for ease of use
-- Works out of the box with the following default configuration:
-    + Uses `AuthorizationCode` as the default AuthorizationGrant
-    + Uses `Zend\Http\Client` as the default Http client
-    + Uses `ZendService\Oauth2\AccessToken\AccessToken` as the default AccessToken object
-    + Uses `ZendService\Oauth2\Client\Client` as the default client implementation
-- Supports custom client implementation to add or change behaviours
-    + Can extend `ZendService\Oauth2\Client\AbstractClient`
-    + Must implement `ZendService\Oauth2\Client\ClientInterface`
-- Add custom Oauth2.0 flows by adding custom authorization grants:
-    + Can extend `ZendService\Oauth2\AuthorizationGrant\AbstractAuthorizationGrant`
-    + Must implement `ZendService\Oauth2\AuthorizationGrant\AuthorizationGrantInterface`
-- Supports custom Http clients
-    + Must implement `ZendService\Oauth2\Http\Client\ClientInterface`
-
 ### Status
 
 Currently under development so please don't use in production environments yet...
@@ -109,6 +92,23 @@ or POST requests:
 ```
 $response = $client->post('http://api.youwishtoconnect.to/some_endpoint', array('param1', 'value1'));
 ```
+
+### Main features
+
+- Provides a main `ZendService\Oauth2\Client\Client` class to interact with for ease of use
+- Works out of the box with the following default configuration:
+    + Uses `AuthorizationCode` as the default AuthorizationGrant
+    + Uses `Zend\Http\Client` as the default Http client
+    + Uses `ZendService\Oauth2\AccessToken\AccessToken` as the default AccessToken object
+    + Uses `ZendService\Oauth2\Client\Client` as the default client implementation
+- Supports custom client implementation to add or change behaviours
+    + Can extend `ZendService\Oauth2\Client\AbstractClient`
+    + Must implement `ZendService\Oauth2\Client\ClientInterface`
+- Add custom Oauth2.0 flows by adding custom authorization grants:
+    + Can extend `ZendService\Oauth2\AuthorizationGrant\AbstractAuthorizationGrant`
+    + Must implement `ZendService\Oauth2\AuthorizationGrant\AuthorizationGrantInterface`
+- Supports custom Http clients
+    + Must implement `ZendService\Oauth2\Http\Client\ClientInterface`
 
 ### Suggestions?
 
