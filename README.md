@@ -13,7 +13,7 @@ There is a live demo available at http://jvandemo.my.phpcloud.com/ZendService_Oa
 
 The source of the demo page is included in the `demos` folder.
 
-### Code sample
+### Quick code walkthrough
 
 First specify your private oauth2.0 details in the config array:
 
@@ -48,7 +48,7 @@ Create a new Oauth2.0 client and pass the config:
 $client = new Client($config);
 ```
 
-Let ZendService_Oauth2 build the authorization request for you:
+Let the client build the authorization request for you:
 
 ```
 $url = $client->getAuthorizationRequestUrl()
@@ -74,7 +74,7 @@ $client->getAccessToken(array(
 ));
 ```
 
-Once you have an access token, you can easily perform GET requests:
+Once you have an access token, you can easily use the client perform GET requests:
 
 ```
 $response = $client->get('http://api.youwishtoconnect.to/some_endpoint', array('param1', 'value1'));
