@@ -7,6 +7,12 @@ Oauth2 service for Zend Framework 2
 
 Currently under development so please don't use in production environments yet...
 
+### Live demo
+
+There is a live demo available at http://jvandemo.my.phpcloud.com/ZendService_Oauth2/demos/ZendService/Oauth2/AuthorizationCode/index.php
+
+The source of the demo page is included in the `demos` folder.
+
 ### Code sample
 
 ```
