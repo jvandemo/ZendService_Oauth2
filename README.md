@@ -12,7 +12,6 @@ Currently under development so please don't use in production environments yet..
 - Write more and better documentation
 - Implement automatic state generation and persistance
 - Provide more unit tests
-- Provide composer package
 - Provide sample to use as service in Zend Framework 2
 
 ### Composer
