@@ -388,9 +388,7 @@ class AuthorizationCode extends AbstractAuthorizationGrant
             throw new Exception('Invalid Http client');
         }
         
-        // Prepare request with access token
-        
-        // Send request
+        return $httpClient->get($url, $query, $headers, $body);
     }
     
     /**
@@ -404,8 +402,6 @@ class AuthorizationCode extends AbstractAuthorizationGrant
             throw new Exception('Invalid Http client');
         }
         
-        // Prepare request with access token
-        
-        // Send request
+        return $httpClient->post($url, $params, $headers, $body);
     }
 }
