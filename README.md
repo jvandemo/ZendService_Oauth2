@@ -15,6 +15,10 @@ Currently under development so please don't use in production environments yet..
 - Provide composer package
 - Provide sample to use as service in Zend Framework 2
 
+### Composer
+
+ZendService_Oauth2 is now available as composer package on https://packagist.org/packages/jvandemo/zendservice-oauth2
+
 ### Live demo
 
 There is a live demo available at http://jvandemo.my.phpcloud.com/ZendService_Oauth2/demos/ZendService/Oauth2/AuthorizationCode/index.php
