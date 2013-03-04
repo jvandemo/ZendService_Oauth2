@@ -36,28 +36,33 @@ class Client extends AbstractClient
     /**
      * Get access token
      *
-     * Overrides the abstract function to implement specific
+     * Overrides the default abstract function to implement specific
      * ZF2 behaviour
      *
-     * @param array $data Data that needs to be passed to access token request e.g. code
-     * @return \ZendService\Oauth2\AccessToken\AccessTokenInterface
+     * (non-PHPdoc)
+     * @see \ZendService\Oauth2\Client\AbstractClient::getAccessToken()
      */
-    public function getAccessToken($data = array())
+    public function getAccessToken($data = array(), $forceReload = false)
     {
-        
-        // Send http request
-        $response = $this->getAuthorizationGrant()->getAccessToken(
-                $this->getHttpClient(),
-                $data);
-        
-        // Handle invalid response
-        if(! $response->isSuccess()) {
-            throw new Exception('Request for access token failed: ' . $response->renderStatusLine());
+        if ((null === $this->_accessToken) || $forceReload) {
+            
+            // Send http request
+            $response = $this->getAuthorizationGrant()->getAccessToken(
+                    $this->getHttpClient(),
+                    $data);
+            
+            // Handle invalid response
+            if (! $response->isSuccess()) {
+                throw new Exception(
+                        'Request for access token failed: ' .
+                                 $response->renderStatusLine());
+            }
+            
+            // Create and set new access token
+            $json = $response->getBody();
+            $this->_accessToken = new AccessToken($json);
         }
         
-        // Create and return access token
-        $json = $response->getBody();
-        return new AccessToken($json);
+        return $this->_accessToken;
     }
-    
 }

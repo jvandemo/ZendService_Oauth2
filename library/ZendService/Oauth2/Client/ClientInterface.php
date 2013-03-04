@@ -45,4 +45,22 @@ interface ClientInterface
      * @return self
      */
     public function setHttpClient($httpClient);
+    
+    /**
+     * Get access token
+     *
+     * Convenience function that delegates to authoration grant
+     *
+     * @return \ZendService\Oauth2\AccessToken\AccessTokenInterface
+     */
+    public function getAccessToken($data = array(), $forceReload = false);
+    
+    /**
+     * Set access token
+     *
+     * @param \ZendService\Oauth2\AccessToken\AccessTokenInterface $accessToken
+     * @return self
+     */
+    public function setAccessToken($accessToken);
+    
 }

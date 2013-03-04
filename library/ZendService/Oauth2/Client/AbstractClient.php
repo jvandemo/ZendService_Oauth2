@@ -21,6 +21,8 @@
  */
 namespace ZendService\Oauth2\Client;
 
+use ZendService;
+use ZendService\Oauth2\AccessToken\AccessTokenInterface;
 use ZendService\Oauth2\AuthorizationGrant\AuthorizationCode;
 use ZendService\Oauth2\AuthorizationGrant\AuthorizationGrantInterface;
 use ZendService\Oauth2\Client\ClientInterface;
@@ -73,6 +75,13 @@ class AbstractClient implements ClientInterface
      * @var \ZendService\Oauth2\Http\Client\ClientInterface
      */
     protected $_httpClient = null;
+    
+    /**
+     * Access token placeholder
+     *
+     * @var \ZendService\Oauth2\AccessToken\AccessTokenInterface
+     */
+    protected $_accessToken = null;
 
     /**
      * Constructor
@@ -155,17 +164,29 @@ class AbstractClient implements ClientInterface
     }
 
     /**
-     * Get access token
-     *
-     * Convenience function that delegates to authoration grant
-     *
-     * @return \ZendService\Oauth2\AccessToken\AccessTokenInterface
+     * (non-PHPdoc)
+     * @see \ZendService\Oauth2\Client\ClientInterface::getAccessToken()
      */
-    public function getAccessToken($data = array())
+    public function getAccessToken($data = array(), $forceReload = false)
     {
-        return $this->getAuthorizationGrant()->getAccessToken(
-                $this->getHttpClient(),
-                $data);
+        if((null === $this->_accessToken) || $forceReload) {
+            $this->_accessToken = $this->getAuthorizationGrant()->getAccessToken(
+                    $this->getHttpClient(),
+                    $data);
+        }
+        return $this->_accessToken;
+    }
+    
+    /**
+     * (non-PHPdoc)
+     * @see \ZendService\Oauth2\Client\ClientInterface::setAccessToken()
+     */
+    public function setAccessToken($accessToken)
+    {
+        if($accessToken instanceof AccessTokenInterface) {
+            $this->_accessToken = $accessToken;
+        }
+        return $this;
     }
 
     /**
