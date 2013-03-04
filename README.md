@@ -14,7 +14,6 @@ Currently under development so please don't use in production environments yet..
 - Provide more unit tests
 - Provide composer package
 - Provide sample to use as service in Zend Framework 2
-- Store and cache access token in client
 
 ### Live demo
 
