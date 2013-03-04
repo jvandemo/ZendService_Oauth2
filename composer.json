@@ -1,5 +1,5 @@
 {
-    "name": "zendframework/zendservice-oauth2",
+    "name": "jvandemo/zendservice-oauth2",
     "description": "Oauth2.0 service for Zend Framework 2",
     "type": "library",
     "keywords": [
@@ -8,8 +8,8 @@
         "oauth2",
         "oauth20"
     ],
-    "homepage": "http://packages.zendframework.com/",
-    "license": "BSD-3-Clause",
+    "homepage": "https://github.com/jvandemo/ZendService_Oauth2",
+    "license": "MIT",
     "autoload": {
         "psr-0": {
             "ZendService\\Oauth2\\": "library/"
