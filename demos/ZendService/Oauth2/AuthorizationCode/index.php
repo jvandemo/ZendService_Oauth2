@@ -80,8 +80,17 @@ $code = (isset($_GET['code'])) ? $_GET['code'] : null;
                         
                         <h4>Step 4: Perform get request</h4>
                         <pre><?php echo $accessToken->getAccessToken() ?></pre>
-                        <pre><?php echo $client->get('https://api.linkedin.com/v1/people/~', array('oauth2_access_token' => $accessToken->getAccessToken()))->getBody() ?></pre>
-                        <pre><?php echo $client->get('https://api.linkedin.com/v1/people/~', array('oauth2_access_token' => $accessToken->getAccessToken())) ?></pre>
+                        
+                        <?php
+                        // Get new client after getAccessToken to avoid 401 error
+                        // Subsequent get and post requests can use the same client
+                        $client = new Client($config);
+                        $response = $client->get('https://api.linkedin.com/v1/people/~', array('oauth2_access_token' => $accessToken->getAccessToken(), 'format' => 'json'));
+                        $response2 = $client->get('https://api.linkedin.com/v1/people/~', array('oauth2_access_token' => $accessToken->getAccessToken(), 'format' => 'xml'));
+                        ?>
+                        
+                        <pre><?php echo $response->getBody() ?></pre>
+                        <pre><?php echo $response2->getBody() ?></pre>
                         
                         <p><a class="btn" href="index.php">Start again</a></p>
                         
