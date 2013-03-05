@@ -72,17 +72,17 @@ class Client implements ClientInterface
      * (non-PHPdoc)
      * @see \ZendService\Oauth2\Http\ClientInterface::get()
      */
-    public function get($url, $query = array(), $headers = array(), $body = null)
+    public function get($uri, $query = array(), $headers = array(), $body = null)
     {
         
         // Handle invalid URL
-        if (empty($url)) {
-            return false;
+        if (empty($uri)) {
+            throw new Exception('No URI specified');
         }
 
         // Build request
         $request= new ZendHttpRequest();
-        $request->setUri($url);
+        $request->setUri($uri);
         $request->setMethod(ZendHttpRequest::METHOD_GET);
 
         if (!empty($query) && is_array($query)) {
@@ -97,7 +97,7 @@ class Client implements ClientInterface
             // $request->setBody($body);
             $request->setContent($body);
         }
-                
+
         return $this->_getZendHttpClient()->send($request);
     }
     
@@ -105,17 +105,17 @@ class Client implements ClientInterface
      * (non-PHPdoc)
      * @see \ZendService\Oauth2\Http\ClientInterface::post()
      */
-    public function post($url, $params, $headers = array(), $body = null)
+    public function post($uri, $params, $headers = array(), $body = null)
     {
 
         // Handle invalid URL
-        if (empty($url)) {
-            return false;
+        if (empty($uri)) {
+            throw new Exception('No URI specified');
         }
 
         // Build request
         $request= new ZendHttpRequest();
-        $request->setUri($url);
+        $request->setUri($uri);
         $request->setMethod(ZendHttpRequest::METHOD_POST);
 
         if (!empty($params) && is_array($params)) {

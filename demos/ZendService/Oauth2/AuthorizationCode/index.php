@@ -21,6 +21,16 @@ use ZendService\Oauth2\Client\Client as Client;
 
 $code = (isset($_GET['code'])) ? $_GET['code'] : null;
 
+class LinkedinUri extends \Zend\Uri\Http
+{
+    const CHAR_UNRESERVED = 'a-zA-Z0-9_\-\.~\(\)';
+    
+    public static function encodePath($path)
+    {
+        return $path;
+    }
+}
+
 ?>
 
 
@@ -65,18 +75,23 @@ $code = (isset($_GET['code'])) ? $_GET['code'] : null;
                             
                         <h4>Step 1: redirect user to Linkedin authorization page</h4>
                         <p><a class="btn btn-success" href="<?php echo $client->getAuthorizationRequestUrl(); ?>">Start demo: connect with Linkedin</a></p>
+                        <p>ZendService_Oauth2 can build the authorization request url for you:</p>
                         
-                        <pre>ZendService_Oauth2 can build the authorization request url for you:<br><br><?php echo $client->getAuthorizationRequestUrl(); ?></pre>
+                        <pre><?php echo $client->getAuthorizationRequestUrl(); ?></pre>
                         
                         <?php if($code){ ?>
                         
                         <h4>Step 2: Grab access token from authorization response</h4>
+                        <p>The following authorization code was returned:</p>
+                        
                         <pre>Code received: <?php echo $code ?></pre>
                         
                         <?php $accessToken = $client->getAccessToken(array('code' => $code)); ?>
                         
                         <h4>Step 3: Get access token</h4>
-                        <pre>ZendService_Oauth2 returned the following access token object:<br><br><?php var_dump($accessToken) ?></pre>
+                        <p>ZendService_Oauth2 returned the following access token object:</p>
+                        
+                        <pre><?php var_dump($accessToken) ?></pre>
                         
                         <h4>Step 4: Perform get request</h4>
                         <pre><?php echo $accessToken->getAccessToken() ?></pre>
@@ -85,12 +100,24 @@ $code = (isset($_GET['code'])) ? $_GET['code'] : null;
                         // Get new client after getAccessToken to avoid 401 error
                         // Subsequent get and post requests can use the same client
                         $client = new Client($config);
-                        $response = $client->get('https://api.linkedin.com/v1/people/~', array('oauth2_access_token' => $accessToken->getAccessToken(), 'format' => 'json'));
-                        $response2 = $client->get('https://api.linkedin.com/v1/people/~', array('oauth2_access_token' => $accessToken->getAccessToken(), 'format' => 'xml'));
+                        $fields = array(
+                            'id',
+                            'first-name',
+                            'last-name',
+                        );
+                        $fieldsString = '';
+                        if(count($fields) > 0) {
+                            $fieldsString = ':(' . implode(',', $fields) . ')';
+                        }
+                        $url = 'https://api.linkedin.com/v1/people/~' . $fieldsString;
+                        
+                        // Build custom Linkedin URI that doesn't escape the parentheses
+                        $uri = new LinkedinUri($url);
+                        
+                        $response = $client->get($uri, array('oauth2_access_token' => $accessToken->getAccessToken(), 'format' => 'json'));
                         ?>
                         
                         <pre><?php echo $response->getBody() ?></pre>
-                        <pre><?php echo $response2->getBody() ?></pre>
                         
                         <p><a class="btn" href="index.php">Start again</a></p>
                         

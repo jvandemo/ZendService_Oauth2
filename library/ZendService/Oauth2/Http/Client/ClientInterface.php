@@ -23,24 +23,24 @@ interface ClientInterface
     /**
      * HTTP GET METHOD (static)
      *
-     * @param  string $url
+     * @param  string|\Zend\Uri\UriInterface $uri
      * @param  array $query
      * @param  array $headers
      * @param  mixed $body
      * @return Response|bool
      */
-    public function get($url, $query = array(), $headers = array(), $body = null);
+    public function get($uri, $query = array(), $headers = array(), $body = null);
     
     /**
      * HTTP POST METHOD (static)
      *
-     * @param  string $url
+     * @param  string|\Zend\Uri\UriInterface $uri
      * @param  array $params
      * @param  array $headers
      * @param  mixed $body
      * @throws Exception\InvalidArgumentException
      * @return Response|bool
      */
-    public function post($url, $params, $headers = array(), $body = null);
+    public function post($uri, $params, $headers = array(), $body = null);
     
 }
