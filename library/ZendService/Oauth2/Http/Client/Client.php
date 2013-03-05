@@ -94,9 +94,10 @@ class Client implements ClientInterface
         }
 
         if (!empty($body)) {
-            $request->setBody($body);
+            // $request->setBody($body);
+            $request->setContent($body);
         }
-
+                
         return $this->_getZendHttpClient()->send($request);
     }
     
