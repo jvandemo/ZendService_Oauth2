@@ -9,38 +9,37 @@
  *
  * Allows for a custom HTTP client and can be replaced by mock client for testing purposes
  */
-
 namespace ZendService\Oauth2\Http\Client;
 
 /**
- * @category   Zend
- * @package    ZendService_Oauth2
+ *
+ * @category Zend
+ * @package ZendService_Oauth2
  * @subpackage Http
  */
 interface ClientInterface
 {
-    
+
     /**
      * HTTP GET METHOD (static)
      *
-     * @param  string|\Zend\Uri\UriInterface $uri
-     * @param  array $query
-     * @param  array $headers
-     * @param  mixed $body
-     * @return Response|bool
+     * @param string|\Zend\Uri\UriInterface $uri            
+     * @param array $query            
+     * @param array $headers            
+     * @param mixed $body            
+     * @return Response bool
      */
-    public function get($uri, $query = array(), $headers = array(), $body = null);
-    
+    public function get ($uri, $query = array(), $headers = array(), $body = null);
+
     /**
      * HTTP POST METHOD (static)
      *
-     * @param  string|\Zend\Uri\UriInterface $uri
-     * @param  array $params
-     * @param  array $headers
-     * @param  mixed $body
+     * @param string|\Zend\Uri\UriInterface $uri            
+     * @param array $params            
+     * @param array $headers            
+     * @param mixed $body            
      * @throws Exception\InvalidArgumentException
-     * @return Response|bool
+     * @return Response bool
      */
-    public function post($uri, $params, $headers = array(), $body = null);
-    
+    public function post ($uri, $params, $headers = array(), $body = null);
 }

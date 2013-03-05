@@ -106,28 +106,28 @@ class LinkedinUri extends \Zend\Uri\Http
                 <pre><?php echo $accessToken->getAccessToken() ?></pre>
                         
                 <?php
-                    // Get new client after getAccessToken to avoid 401 error
-                    // Subsequent get and post requests can use the same client
-                    $client = new Client($config);
-                    $fields = array(
-                        'id',
-                        'first-name',
-                        'last-name'
-                    );
-                    $fieldsString = '';
-                    if (count($fields) > 0) {
-                        $fieldsString = ':(' . implode(',', $fields) . ')';
-                    }
-                    $url = 'https://api.linkedin.com/v1/people/~' . $fieldsString;
-                    
-                    // Build custom Linkedin URI that doesn't escape the parentheses
-                    $uri = new LinkedinUri($url);
-                    
-                    $response = $client->get($uri, array(
-                        'oauth2_access_token' => $accessToken->getAccessToken(),
-                        'format' => 'json'
-                    ));
-                    ?>
+                            // Get new client after getAccessToken to avoid 401 error
+                            // Subsequent get and post requests can use the same client
+                            $client = new Client($config);
+                            $fields = array(
+                                'id',
+                                'first-name',
+                                'last-name'
+                            );
+                            $fieldsString = '';
+                            if (count($fields) > 0) {
+                                $fieldsString = ':(' . implode(',', $fields) . ')';
+                            }
+                            $url = 'https://api.linkedin.com/v1/people/~' . $fieldsString;
+                            
+                            // Build custom Linkedin URI that doesn't escape the parentheses
+                            $uri = new LinkedinUri($url);
+                            
+                            $response = $client->get($uri, array(
+                                'oauth2_access_token' => $accessToken->getAccessToken(),
+                                'format' => 'json'
+                            ));
+                            ?>
                 
                 <pre><?php echo $response->getBody() ?></pre>
 

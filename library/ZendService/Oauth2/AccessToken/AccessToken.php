@@ -15,8 +15,9 @@ use Zend\Json\Json;
 use ZendService\Oauth2\AccessToken\AccessTokenInterface;
 
 /**
- * @category   Zend
- * @package    ZendService_Oauth2
+ *
+ * @category Zend
+ * @package ZendService_Oauth2
  * @subpackage AccessToken
  */
 class AccessToken implements AccessTokenInterface
@@ -60,9 +61,10 @@ class AccessToken implements AccessTokenInterface
     /**
      * Constructor
      *
-     * @param string|array $data String with json or array
+     * @param string|array $data
+     *            String with json or array
      */
-    public function __construct($data = null)
+    public function __construct ($data = null)
     {
         
         // Try to fill object from passed data if possible
@@ -76,10 +78,10 @@ class AccessToken implements AccessTokenInterface
     /**
      * Fill access token properties from Json object
      *
-     * @param string $json
+     * @param string $json            
      * @return self
      */
-    public function fromJson($json = '')
+    public function fromJson ($json = '')
     {
         $data = Json::decode($json);
         
@@ -89,10 +91,10 @@ class AccessToken implements AccessTokenInterface
     /**
      * Fill access token properties from array
      *
-     * @param array $data
+     * @param array $data            
      * @return self
      */
-    public function fromArray($data = array())
+    public function fromArray ($data = array())
     {
         
         // Handle invalida data
@@ -124,90 +126,100 @@ class AccessToken implements AccessTokenInterface
     }
 
     /**
+     *
      * @return string
      */
-    public function getAccessToken()
+    public function getAccessToken ()
     {
         return $this->_accessToken;
     }
 
     /**
-     * @param string $accessToken
+     *
+     * @param string $accessToken            
      * @return self
      */
-    public function setAccessToken($accessToken)
+    public function setAccessToken ($accessToken)
     {
         $this->_accessToken = $accessToken;
         return $this;
     }
 
     /**
+     *
      * @return string
      */
-    public function getTokenType()
+    public function getTokenType ()
     {
         return $this->_tokenType;
     }
 
     /**
-     * @param string $tokenType
+     *
+     * @param string $tokenType            
      * @return self
      */
-    public function setTokenType($tokenType)
+    public function setTokenType ($tokenType)
     {
         $this->_tokenType = $tokenType;
         return $this;
     }
 
     /**
+     *
      * @return number
      */
-    public function getExpiresIn()
+    public function getExpiresIn ()
     {
         return $this->_expiresIn;
     }
 
     /**
-     * @param number $expiresIn
+     *
+     * @param number $expiresIn            
      * @return self
      */
-    public function setExpiresIn($expiresIn)
+    public function setExpiresIn ($expiresIn)
     {
         $this->_expiresIn = $expiresIn;
         return $this;
     }
 
     /**
+     *
      * @return string
      */
-    public function getRefreshToken()
+    public function getRefreshToken ()
     {
         return $this->_refreshToken;
     }
 
     /**
-     * @param string $refreshToken
+     *
+     * @param string $refreshToken            
      * @return self
      */
-    public function setRefreshToken($refreshToken)
+    public function setRefreshToken ($refreshToken)
     {
         $this->_refreshToken = $refreshToken;
         return $this;
     }
 
     /**
+     *
      * @return string
      */
-    public function getScope()
+    public function getScope ()
     {
         return $this->_scope;
     }
 
     /**
-     * @param string $scope
+     *
+     * @param string $scope            
      * @return self
      */
-    public function setScope($scope)
+    public function setScope ($scope)
     {
         $this->_scope = $scope;
         return $this;

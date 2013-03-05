@@ -7,21 +7,22 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  * @package   Zend_Service
  */
-
 namespace ZendServiceTest\Oauth2\Client;
 
 use ZendService\Oauth2\Client\Client;
 use ZendService\Oauth2\AuthorizationGrant\AuthorizationCode;
 
 /**
- * @category   Zend
- * @package    ZendService_Oauth2
+ *
+ * @category Zend
+ * @package ZendService_Oauth2
  * @subpackage Client
- * @group      ZendService
- * @group      ZendService_Oauth2
+ *             @group ZendService
+ *             @group ZendService_Oauth2
  */
 class ClientTest extends \PHPUnit_Framework_TestCase
 {
+
     /**
      * The client object instance
      *
@@ -34,30 +35,28 @@ class ClientTest extends \PHPUnit_Framework_TestCase
      *
      * @return \ZendService\Oauth2\Client\Client
      */
-    public function getClient()
+    public function getClient ()
     {
-        if(null === $this->_client) {
+        if (null === $this->_client) {
             $this->_client = new Client();
         }
         return $this->_client;
     }
 
-    public function setUp()
-    {
-    }
+    public function setUp ()
+    {}
 
-    public function tearDown()
-    {
-    }
-    
-    public function testGetClient()
+    public function tearDown ()
+    {}
+
+    public function testGetClient ()
     {
         $this->assertNotNull($this->getClient());
     }
-    
-    public function testAuthorizationGrantIsAuthorizationCodeByDefault()
+
+    public function testAuthorizationGrantIsAuthorizationCodeByDefault ()
     {
-        $this->assertTrue($this->getClient()->getAuthorizationGrant() instanceof AuthorizationCode);
+        $this->assertTrue($this->getClient()
+            ->getAuthorizationGrant() instanceof AuthorizationCode);
     }
-    
 }

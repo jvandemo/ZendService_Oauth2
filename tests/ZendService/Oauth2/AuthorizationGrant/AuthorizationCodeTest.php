@@ -7,20 +7,21 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  * @package   Zend_Service
  */
-
 namespace ZendServiceTest\Oauth2\Client;
 
 use ZendService\Oauth2\AuthorizationGrant\AuthorizationCode;
 
 /**
- * @category   Zend
- * @package    ZendService_Oauth2
+ *
+ * @category Zend
+ * @package ZendService_Oauth2
  * @subpackage Client
- * @group      ZendService
- * @group      ZendService_Oauth2
+ *             @group ZendService
+ *             @group ZendService_Oauth2
  */
 class AuthorizationCodeTest extends \PHPUnit_Framework_TestCase
 {
+
     /**
      * The grant object instance
      *
@@ -33,34 +34,32 @@ class AuthorizationCodeTest extends \PHPUnit_Framework_TestCase
      *
      * @return \ZendService\Oauth2\Client\Client
      */
-    public function getAuthorizationCode()
+    public function getAuthorizationCode ()
     {
-        if(null === $this->_authorizationCode) {
+        if (null === $this->_authorizationCode) {
             $this->_authorizationCode = new AuthorizationCode();
         }
         return $this->_authorizationCode;
     }
 
-    public function setUp()
-    {
-    }
+    public function setUp ()
+    {}
 
-    public function tearDown()
-    {
-    }
-    
-    public function testGetAuthorizationCode()
+    public function tearDown ()
+    {}
+
+    public function testGetAuthorizationCode ()
     {
         $this->assertNotNull($this->getAuthorizationCode());
     }
-    
-    public function testGetAuthorizationRequestUrl()
+
+    public function testGetAuthorizationRequestUrl ()
     {
         $data = array(
             'client_id' => 'clientid',
             'client_secret' => 'clientsecret',
             'authorization_url' => 'authorizationurl',
-            'access_token_url' => 'accesstokenurl',
+            'access_token_url' => 'accesstokenurl'
         );
         $authorizationCode = new AuthorizationCode($data);
         
@@ -69,11 +68,10 @@ class AuthorizationCodeTest extends \PHPUnit_Framework_TestCase
             'client_id' => $data['client_id'],
             'redirect_uri' => '',
             'scope' => '',
-            'state' => '',
+            'state' => ''
         );
         $expectedAuthorizationRequestUrl = 'authorizationurl?' . http_build_query($expectedQueryData);
         
         $this->assertEquals($expectedAuthorizationRequestUrl, $authorizationCode->getAuthorizationRequestUrl());
     }
-    
 }

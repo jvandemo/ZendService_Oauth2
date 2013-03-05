@@ -26,8 +26,9 @@ use ZendService\Oauth2\Client\AbstractClient;
 use ZendService\Oauth2\Client\Exception\Exception;
 
 /**
- * @category   Zend
- * @package    ZendService_Oauth2
+ *
+ * @category Zend
+ * @package ZendService_Oauth2
  * @subpackage Client
  */
 class Client extends AbstractClient
@@ -40,22 +41,19 @@ class Client extends AbstractClient
      * ZF2 behaviour
      *
      * (non-PHPdoc)
+     *
      * @see \ZendService\Oauth2\Client\AbstractClient::getAccessToken()
      */
-    public function getAccessToken($data = array(), $forceReload = false)
+    public function getAccessToken ($data = array(), $forceReload = false)
     {
         if ((null === $this->_accessToken) || $forceReload) {
             
             // Send http request
-            $response = $this->getAuthorizationGrant()->getAccessToken(
-                    $this->getHttpClient(),
-                    $data);
+            $response = $this->getAuthorizationGrant()->getAccessToken($this->getHttpClient(), $data);
             
             // Handle invalid response
             if (! $response->isSuccess()) {
-                throw new Exception(
-                        'Request for access token failed: ' .
-                                 $response->renderStatusLine());
+                throw new Exception('Request for access token failed: ' . $response->renderStatusLine());
             }
             
             // Create and set new access token

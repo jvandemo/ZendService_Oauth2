@@ -11,8 +11,9 @@
 namespace ZendService\Oauth2\AuthorizationGrant;
 
 /**
- * @category   Zend
- * @package    ZendService_Oauth2
+ *
+ * @category Zend
+ * @package ZendService_Oauth2
  * @subpackage AuthorizationGrant
  */
 interface AuthorizationGrantInterface
@@ -21,50 +22,55 @@ interface AuthorizationGrantInterface
     /**
      * Get URL for authorization request
      *
-     * @param array $data Associative array with data to add to query parameters
+     * @param array $data
+     *            Associative array with data to add to query parameters
      * @return string Authorization request URL
      */
-    public function getAuthorizationRequestUrl($data);
+    public function getAuthorizationRequestUrl ($data);
 
     /**
      * Get access token
      *
-     * @param \ZendService\Oauth2\Http\Client\ClientInterface $httpClient Http client to delegate request to
+     * @param \ZendService\Oauth2\Http\Client\ClientInterface $httpClient
+     *            Http client to delegate request to
      * @return \ZendService\Oauth2\AccessToken\AccessTokenInterface
      */
-    public function getAccessToken($httpClient);
+    public function getAccessToken ($httpClient);
 
     /**
      * Get refresh token
      *
-     * @param \ZendService\Oauth2\Http\Client\ClientInterface $httpClient Http client to delegate request to
+     * @param \ZendService\Oauth2\Http\Client\ClientInterface $httpClient
+     *            Http client to delegate request to
      * @return \ZendService\Oauth2\RefreshToken\RefreshTokenInterface
      */
-    public function getRefreshToken($httpClient);
-    
+    public function getRefreshToken ($httpClient);
+
     /**
      * Perform GET request
      *
-     * @param \ZendService\Oauth2\Http\Client\ClientInterface $httpClient Http client to delegate request to
-     * @param string $url
-     * @param array $query
-     * @param array $headers
-     * @param string $body
+     * @param \ZendService\Oauth2\Http\Client\ClientInterface $httpClient
+     *            Http client to delegate request to
+     * @param string $url            
+     * @param array $query            
+     * @param array $headers            
+     * @param string $body            
      *
      * @return mixed Response
      */
-    public function get($httpClient, $url, $query = array(), $headers = array(), $body = null);
-        
+    public function get ($httpClient, $url, $query = array(), $headers = array(), $body = null);
+
     /**
      * Perform POST request
      *
-     * @param \ZendService\Oauth2\Http\Client\ClientInterface $httpClient Http client to delegate request to
-     * @param string $url
-     * @param array $params
-     * @param array $headers
-     * @param string $body
+     * @param \ZendService\Oauth2\Http\Client\ClientInterface $httpClient
+     *            Http client to delegate request to
+     * @param string $url            
+     * @param array $params            
+     * @param array $headers            
+     * @param string $body            
      *
      * @return mixed Response
      */
-    public function post($httpClient, $url, $params, $headers = array(), $body = null);
+    public function post ($httpClient, $url, $params, $headers = array(), $body = null);
 }

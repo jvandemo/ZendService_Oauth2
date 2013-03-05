@@ -7,45 +7,46 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  * @package   ZendService_Oauth2
  */
-
 namespace ZendService\Oauth2\Client;
 
 /**
- * @category   Zend
- * @package    ZendService_Oauth2
+ *
+ * @category Zend
+ * @package ZendService_Oauth2
  */
 interface ClientInterface
 {
+
     /**
      * Get authorization grant
      *
      * @return \ZendService\Oauth2\AuthorizationGrant\AuthorizationGrantInterface
      */
-    public function getAuthorizationGrant();
-    
+    public function getAuthorizationGrant ();
+
     /**
      * Set authorization grant
      *
-     * @param \ZendService\Oauth2\AuthorizationGrant\AuthorizationGrantInterface $_authorizationGrant
+     * @param \ZendService\Oauth2\AuthorizationGrant\AuthorizationGrantInterface $_authorizationGrant            
      * @return self
      */
-    public function setAuthorizationGrant($authorizationGrant);
-    
+    public function setAuthorizationGrant ($authorizationGrant);
+
     /**
      * Get HTTP client
      *
      * @return \Zend\Http\Client
      */
-    public function getHttpClient();
-    
+    public function getHttpClient ();
+
     /**
      * Set HTTP client
      *
-     * @param \Zend\Http\Client $httpClient
+     * @param \Zend\Http\Client $httpClient            
      * @return self
      */
-    public function setHttpClient($httpClient);
-    
+    public function setHttpClient ($httpClient);
+
     /**
      * Get access token
      *
@@ -53,14 +54,13 @@ interface ClientInterface
      *
      * @return \ZendService\Oauth2\AccessToken\AccessTokenInterface
      */
-    public function getAccessToken($data = array(), $forceReload = false);
-    
+    public function getAccessToken ($data = array(), $forceReload = false);
+
     /**
      * Set access token
      *
-     * @param \ZendService\Oauth2\AccessToken\AccessTokenInterface $accessToken
+     * @param \ZendService\Oauth2\AccessToken\AccessTokenInterface $accessToken            
      * @return self
      */
-    public function setAccessToken($accessToken);
-    
+    public function setAccessToken ($accessToken);
 }

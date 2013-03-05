@@ -7,12 +7,13 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  * @package   ZendService_Oauth2
  */
-
 namespace ZendService\Oauth2\AuthorizationGrant\Exception;
 
 /**
- * @category   Zend
- * @package    ZendService_Oauth2
+ *
+ * @category Zend
+ * @package ZendService_Oauth2
  */
 interface ExceptionInterface
-{}
+{
+}

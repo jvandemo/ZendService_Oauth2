@@ -7,14 +7,13 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  * @package   ZendService_Oauth2
  */
-
 namespace ZendService\Oauth2\Client\Exception;
 
 /**
  * Oauth2 exception
  *
- * @category   Zend
- * @package    ZendService_Oauth2
+ * @category Zend
+ * @package ZendService_Oauth2
  */
 class Exception extends \Exception implements ExceptionInterface
 {

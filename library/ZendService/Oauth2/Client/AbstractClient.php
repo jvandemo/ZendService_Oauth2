@@ -30,8 +30,9 @@ use ZendService\Oauth2\Http\Client\Client as HttpClient;
 use ZendService\Oauth2\Http\Client\ClientInterface as HttpClientInterface;
 
 /**
- * @category   Zend
- * @package    ZendService_Oauth2
+ *
+ * @category Zend
+ * @package ZendService_Oauth2
  * @subpackage Client
  */
 class AbstractClient implements ClientInterface
@@ -75,7 +76,7 @@ class AbstractClient implements ClientInterface
      * @var \ZendService\Oauth2\Http\Client\ClientInterface
      */
     protected $_httpClient = null;
-    
+
     /**
      * Access token placeholder
      *
@@ -86,9 +87,10 @@ class AbstractClient implements ClientInterface
     /**
      * Constructor
      *
-     * @param mixed $options Options that need to be passed to authorization grant
+     * @param mixed $options
+     *            Options that need to be passed to authorization grant
      */
-    public function __construct($options = array())
+    public function __construct ($options = array())
     {
         $this->_options = $options;
     }
@@ -98,11 +100,10 @@ class AbstractClient implements ClientInterface
      *
      * @return \ZendService\Oauth2\AuthorizationGrant\AuthorizationGrantInterface
      */
-    public function getAuthorizationGrant()
+    public function getAuthorizationGrant ()
     {
         if (null === $this->_authorizationGrant) {
-            $options = array_key_exists(self::OPTIONS_KEY_AUTHORIZATION_GRANT,
-                    $this->_options) ? $this->_options[self::OPTIONS_KEY_AUTHORIZATION_GRANT] : array();
+            $options = array_key_exists(self::OPTIONS_KEY_AUTHORIZATION_GRANT, $this->_options) ? $this->_options[self::OPTIONS_KEY_AUTHORIZATION_GRANT] : array();
             $this->_authorizationGrant = new AuthorizationCode($options);
         }
         return $this->_authorizationGrant;
@@ -111,10 +112,10 @@ class AbstractClient implements ClientInterface
     /**
      * Set authorization grant
      *
-     * @param \ZendService\Oauth2\AuthorizationGrant\AuthorizationGrantInterface $_authorizationGrant
+     * @param \ZendService\Oauth2\AuthorizationGrant\AuthorizationGrantInterface $_authorizationGrant            
      * @return self
      */
-    public function setAuthorizationGrant($authorizationGrant)
+    public function setAuthorizationGrant ($authorizationGrant)
     {
         if ($authorizationGrant instanceof AuthorizationGrantInterface) {
             $this->_authorizationGrant = $authorizationGrant;
@@ -127,11 +128,10 @@ class AbstractClient implements ClientInterface
      *
      * @return \ZendService\Oauth2\Http\ClientInterface
      */
-    public function getHttpClient()
+    public function getHttpClient ()
     {
         if (null === $this->_httpClient) {
-            $options = array_key_exists(self::OPTIONS_KEY_HTTP_CLIENT,
-                    $this->_options) ? $this->_options[self::OPTIONS_KEY_HTTP_CLIENT] : array();
+            $options = array_key_exists(self::OPTIONS_KEY_HTTP_CLIENT, $this->_options) ? $this->_options[self::OPTIONS_KEY_HTTP_CLIENT] : array();
             $this->_httpClient = new HttpClient($options);
         }
         return $this->_httpClient;
@@ -140,10 +140,10 @@ class AbstractClient implements ClientInterface
     /**
      * Set HTTP client
      *
-     * @param \ZendService\Oauth2\Http\Client\ClientInterface $httpClient
+     * @param \ZendService\Oauth2\Http\Client\ClientInterface $httpClient            
      * @return self
      */
-    public function setHttpClient($httpClient)
+    public function setHttpClient ($httpClient)
     {
         if ($httpClient instanceof HttpClientInterface) {
             $this->_httpClient = $httpClient;
@@ -158,32 +158,32 @@ class AbstractClient implements ClientInterface
      *
      * @return string Authorization request URL
      */
-    public function getAuthorizationRequestUrl($data = array())
+    public function getAuthorizationRequestUrl ($data = array())
     {
         return $this->getAuthorizationGrant()->getAuthorizationRequestUrl();
     }
 
     /**
      * (non-PHPdoc)
+     *
      * @see \ZendService\Oauth2\Client\ClientInterface::getAccessToken()
      */
-    public function getAccessToken($data = array(), $forceReload = false)
+    public function getAccessToken ($data = array(), $forceReload = false)
     {
-        if((null === $this->_accessToken) || $forceReload) {
-            $this->_accessToken = $this->getAuthorizationGrant()->getAccessToken(
-                    $this->getHttpClient(),
-                    $data);
+        if ((null === $this->_accessToken) || $forceReload) {
+            $this->_accessToken = $this->getAuthorizationGrant()->getAccessToken($this->getHttpClient(), $data);
         }
         return $this->_accessToken;
     }
-    
+
     /**
      * (non-PHPdoc)
+     *
      * @see \ZendService\Oauth2\Client\ClientInterface::setAccessToken()
      */
-    public function setAccessToken($accessToken)
+    public function setAccessToken ($accessToken)
     {
-        if($accessToken instanceof AccessTokenInterface) {
+        if ($accessToken instanceof AccessTokenInterface) {
             $this->_accessToken = $accessToken;
         }
         return $this;
@@ -196,50 +196,38 @@ class AbstractClient implements ClientInterface
      *
      * @return \ZendService\Oauth2\RefreshToken\RefreshTokenInterface
      */
-    public function getRefreshToken($data = array())
+    public function getRefreshToken ($data = array())
     {
-        return $this->getAuthorizationGrant()->getRefreshToken(
-                $this->getHttpClient(),
-                $data);
+        return $this->getAuthorizationGrant()->getRefreshToken($this->getHttpClient(), $data);
     }
 
     /**
      * Perform GET request
      *
-     * @param string $url
-     * @param array $query
-     * @param array $headers
-     * @param string $body
+     * @param string $url            
+     * @param array $query            
+     * @param array $headers            
+     * @param string $body            
      *
      * @return mixed Response
      */
-    public function get($url, $query = array(), $headers = array(), $body = null)
+    public function get ($url, $query = array(), $headers = array(), $body = null)
     {
-        return $this->getAuthorizationGrant()->get(
-                $this->getHttpClient(),
-                $url,
-                $query,
-                $headers,
-                $body);
+        return $this->getAuthorizationGrant()->get($this->getHttpClient(), $url, $query, $headers, $body);
     }
-    
+
     /**
      * Perform POST request
      *
-     * @param string $url
-     * @param array $params
-     * @param array $headers
-     * @param string $body
+     * @param string $url            
+     * @param array $params            
+     * @param array $headers            
+     * @param string $body            
      *
      * @return mixed Response
      */
-    public function post($url, $params, $headers = array(), $body = null)
+    public function post ($url, $params, $headers = array(), $body = null)
     {
-        return $this->getAuthorizationGrant()->post(
-                $this->getHttpClient(),
-                $url,
-                $params,
-                $headers,
-                $body);
+        return $this->getAuthorizationGrant()->post($this->getHttpClient(), $url, $params, $headers, $body);
     }
 }

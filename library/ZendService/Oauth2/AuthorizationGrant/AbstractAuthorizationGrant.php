@@ -15,17 +15,18 @@ use Zend\Stdlib\ArrayUtils;
 use ZendService\Oauth2\AuthorizationGrant\AuthorizationGrantInterface;
 
 /**
- * @category   Zend
- * @package    ZendService_Oauth2
+ *
+ * @category Zend
+ * @package ZendService_Oauth2
  * @subpackage AuthorizationGrant
  */
 abstract class AbstractAuthorizationGrant implements AuthorizationGrantInterface
 {
-    
+
     /**
      * Default constructor
      *
-     * @param array|Traversable $options
+     * @param array|Traversable $options            
      */
     public function __construct ($options = array())
     {
@@ -35,11 +36,11 @@ abstract class AbstractAuthorizationGrant implements AuthorizationGrantInterface
     /**
      * Set options
      *
-     * @param array|\Traversable $options
+     * @param array|\Traversable $options            
      * @throws \Zend\View\Exception\InvalidArgumentException
      * @return ViewModel
      */
-    public function setOptions($options)
+    public function setOptions ($options)
     {
         
         // Convert options to array if traversable
@@ -49,12 +50,7 @@ abstract class AbstractAuthorizationGrant implements AuthorizationGrantInterface
         
         // Handle invalid options
         if (! is_array($options)) {
-            throw new Exception\Exception(
-                    sprintf(
-                            '%s: expects an array, or Traversable argument; received "%s"',
-                            __METHOD__,
-                            (is_object($options) ? get_class($options) : gettype(
-                                    $options))));
+            throw new Exception\Exception(sprintf('%s: expects an array, or Traversable argument; received "%s"', __METHOD__, (is_object($options) ? get_class($options) : gettype($options))));
         }
         
         // Set all options
@@ -78,11 +74,11 @@ abstract class AbstractAuthorizationGrant implements AuthorizationGrantInterface
      *
      * will run setClientId('1234')
      *
-     * @param string $name
-     * @param mixed $value
+     * @param string $name            
+     * @param mixed $value            
      * @return self
      */
-    public function setOption($name = '', $value = null)
+    public function setOption ($name = '', $value = null)
     {
         // Assemble setter name
         $setter = 'set' . $this->_underscoreToUpperCase($name);
@@ -94,7 +90,7 @@ abstract class AbstractAuthorizationGrant implements AuthorizationGrantInterface
         
         return $this->$setter($value);
     }
-    
+
     /**
      * Get single option
      *
@@ -108,30 +104,30 @@ abstract class AbstractAuthorizationGrant implements AuthorizationGrantInterface
      *
      * will run getClientId()
      *
-     * @param string $name
-     * @param mixed $params
+     * @param string $name            
+     * @param mixed $params            
      * @return self
      */
-    public function getOption($name = '')
+    public function getOption ($name = '')
     {
         // Assemble setter name
         $getter = 'set' . $this->_underscoreToUpperCase($name);
-    
+        
         // Handle unexisting setter
         if (! method_exists($this, $getter)) {
             return $this;
         }
-    
+        
         return $this->$getter($value);
     }
-    
+
     /**
      * Convert all underscores in string to upper case
      *
-     * @param string $name
+     * @param string $name            
      * @return string String with underscores replaced by upper case
      */
-    protected function _underscoreToUpperCase($name = '')
+    protected function _underscoreToUpperCase ($name = '')
     {
         $result = '';
         $words = explode('_', strtolower($name));

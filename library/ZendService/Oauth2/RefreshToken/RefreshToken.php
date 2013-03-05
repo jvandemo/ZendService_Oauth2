@@ -14,11 +14,11 @@ namespace ZendService\Oauth2\RefreshToken;
 use ZendService\Oauth2\RefreshToken\RefreshTokenInterface;
 
 /**
- * @category   Zend
- * @package    ZendService_Oauth2
+ *
+ * @category Zend
+ * @package ZendService_Oauth2
  * @subpackage RefreshToken
  */
 class RefreshToken implements RefreshTokenInterface
 {
-
 }
