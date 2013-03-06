@@ -120,7 +120,7 @@ class AuthorizationCode extends AbstractAuthorizationGrant
 
     /**
      *
-     * @param string $clientId            
+     * @param string $clientId
      * @return self
      */
     public function setClientId ($clientId)
@@ -140,7 +140,7 @@ class AuthorizationCode extends AbstractAuthorizationGrant
 
     /**
      *
-     * @param string $clientSecret            
+     * @param string $clientSecret
      * @return self
      */
     public function setClientSecret ($clientSecret)
@@ -160,7 +160,7 @@ class AuthorizationCode extends AbstractAuthorizationGrant
 
     /**
      *
-     * @param string $responseType            
+     * @param string $responseType
      * @return self
      */
     public function setResponseType ($responseType)
@@ -180,7 +180,7 @@ class AuthorizationCode extends AbstractAuthorizationGrant
 
     /**
      *
-     * @param string $type            
+     * @param string $type
      * @return self
      */
     public function setType ($type)
@@ -200,7 +200,7 @@ class AuthorizationCode extends AbstractAuthorizationGrant
 
     /**
      *
-     * @param string $accessTokenUrl            
+     * @param string $accessTokenUrl
      * @return self
      */
     public function setAccessTokenUrl ($accessTokenUrl)
@@ -220,7 +220,7 @@ class AuthorizationCode extends AbstractAuthorizationGrant
 
     /**
      *
-     * @param string $requestTokenUrl            
+     * @param string $requestTokenUrl
      * @return self
      */
     public function setRequestTokenUrl ($requestTokenUrl)
@@ -240,7 +240,7 @@ class AuthorizationCode extends AbstractAuthorizationGrant
 
     /**
      *
-     * @param string $authorizationUrl            
+     * @param string $authorizationUrl
      * @return self
      */
     public function setAuthorizationUrl ($authorizationUrl)
@@ -260,7 +260,7 @@ class AuthorizationCode extends AbstractAuthorizationGrant
 
     /**
      *
-     * @param string $authorizationCode            
+     * @param string $authorizationCode
      * @return self
      */
     public function setAuthorizationCode ($authorizationCode)
@@ -280,7 +280,7 @@ class AuthorizationCode extends AbstractAuthorizationGrant
 
     /**
      *
-     * @param string $redirectUri            
+     * @param string $redirectUri
      * @return self
      */
     public function setRedirectUri ($redirectUri)
@@ -300,7 +300,7 @@ class AuthorizationCode extends AbstractAuthorizationGrant
 
     /**
      *
-     * @param string $scope            
+     * @param string $scope
      * @return self
      */
     public function setScope ($scope)
@@ -320,7 +320,7 @@ class AuthorizationCode extends AbstractAuthorizationGrant
 
     /**
      *
-     * @param string $state            
+     * @param string $state
      * @return self
      */
     public function setState ($state)
@@ -343,9 +343,11 @@ class AuthorizationCode extends AbstractAuthorizationGrant
             'scope' => $this->getScope(),
             'state' => $this->getState()
         );
+        
         if (is_array($data)) {
             $queryData = array_merge($queryData, $data);
         }
+        
         return $this->getAuthorizationUrl() . '?' . http_build_query($queryData);
     }
 
