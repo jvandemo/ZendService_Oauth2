@@ -6,6 +6,7 @@
 .project
 .settings
 composer.lock
+composer.phar
 
 # Ignore vendor folder and all files and folders underneath it
 vendor/
