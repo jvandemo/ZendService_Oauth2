@@ -92,13 +92,13 @@ $client = new Client($config);
 $accessToken = getAccessTokenFromYourBackend(); // Replace with your custom function
 
 and perform GET requests
-$response = $client->get('http://api.youwishtoconnect.to/some_endpoint', array('access_token', $accessToken->getAccessToken()));
+$response = $client->get('http://api.youwishtoconnect.to/some_endpoint', array('access_token' => $accessToken->getAccessToken()));
 
 // or POST requests
-$response = $client->post('http://api.youwishtoconnect.to/some_endpoint', array('access_token', $accessToken->getAccessToken()));
+$response = $client->post('http://api.youwishtoconnect.to/some_endpoint', array('access_token' => $accessToken->getAccessToken()));
 
 // Some third parties e.g. Linkedin requires the token to be passed as `oauth2_access_token` parameter, so you can easily change it as required
-$response = $client->get('http://api.youwishtoconnect.to/some_endpoint', array('oauth2_access_token', $accessToken->getAccessToken()));
+$response = $client->get('http://api.youwishtoconnect.to/some_endpoint', array('oauth2_access_token' => $accessToken->getAccessToken()));
 ```
 
 By default, the `Zend\Http\Client` is used to perform the requests, so you get a 'Zend\Http\Response' obejct:
