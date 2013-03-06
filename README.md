@@ -10,13 +10,19 @@ Currently under development so please don't use in production environments yet..
 ### To do
 
 - Write more and better documentation
-- Implement automatic state generation and persistance
 - Provide more unit tests
-- Provide sample to use as service in Zend Framework 2
 
 ### Composer
 
 ZendService_Oauth2 is now available as composer package on https://packagist.org/packages/jvandemo/zendservice-oauth2
+
+To include it in your project, add the following line to your `composer.json`:
+
+```
+"require": {
+	"jvandemo/zendservice-oauth2" : "dev-master"
+}
+```
 
 ### Live demo
 
@@ -24,13 +30,12 @@ There is a live demo available at http://jvandemo.my.phpcloud.com/ZendService_Oa
 
 The source of the demo page is included in the `demos` folder.
 
-### Quick code walkthrough
-
-Start by specifying your private oauth2.0 details in a config array:
+### A quick demo
 
 ```
 use ZendService\Oauth2\Client\Client;
 
+// Create configuration
 $config = array(
 
     // Oauth2 client options
@@ -39,7 +44,8 @@ $config = array(
 	    'client_secret' => 'your_client_secret',
 	    'authorization_url' => 'https://api.youwishtoconnect.to/authorize',
 	    'access_token_url' => 'https://api.youwishtoconnect.to/access_token',
-	    'redirect_uri' => 'http://www.yourwebsite.com/where_to_go_after_authorization'
+	    'redirect_uri' => 'http://www.yourwebsite.com/where_to_go_after_authorization',
+	    'state' => 'somerandomstate',
     ),
     
     // Http client options
@@ -51,52 +57,53 @@ $config = array(
         ),
     ),
 );
-```
 
-Create a new Oauth2.0 client and pass the config:
+// Create a new Oauth2.0 client and pass in the config:
 
-```
 $client = new Client($config);
-```
 
-Let the client build the authorization request for you:
-
-```
+// Let the client build the authorization request for you:
 $url = $client->getAuthorizationRequestUrl()
-```
 
-Redirect the user to the authorization request url:
-
-```
-// Sample to redirect from within your controller
+// Redirect the user to the authorization request url:
 return $this->redirect()->toUrl($url);
 ```
 
-Grab the access token from the authorization response:
+The third party authorization server will redirect you to the url you specified in `redirect_uri`:
 
 ```
+// Grab the access token from the authorization response:
 $code = $_GET['code'];
-```
 
-Use the authorization code to get an access token: 
-
-```
-$client->getAccessToken(array(
+// Use the authorization code to get an access token: 
+$accessToken = $client->getAccessToken(array(
 	'code' => $code
 ));
 ```
 
-Once you have an access token, you can easily use the client perform GET requests:
+You can then store the access token in your backend system and use it to perform Oauth2.0 requests: 
 
 ```
-$response = $client->get('http://api.youwishtoconnect.to/some_endpoint', array('param1', 'value1'));
+// Create a client
+$client = new Client($config);
+
+and perform GET requests
+$response = $client->get('http://api.youwishtoconnect.to/some_endpoint', array('access_token', $accessToken->getAccessToken()));
+
+// or POST requests
+$response = $client->post('http://api.youwishtoconnect.to/some_endpoint', array('access_token', $accessToken->getAccessToken()));
+
+// Some third parties e.g. Linkedin requires the token to be passed as `oauth2_access_token` parameter, so you can easily change it as required
+$response = $client->get('http://api.youwishtoconnect.to/some_endpoint', array('oauth2_access_token', $accessToken->getAccessToken()));
 ```
 
-or POST requests:
+By default, the `Zend\Http\Client` is used to perform the requests, so you get a 'Zend\Http\Response' obejct:
 
 ```
-$response = $client->post('http://api.youwishtoconnect.to/some_endpoint', array('param1', 'value1'));
+// Print the response body
+echo $response->getBody()
 ```
+
 
 ### Main features
 
