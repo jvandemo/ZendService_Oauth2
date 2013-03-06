@@ -58,8 +58,7 @@ $config = array(
     ),
 );
 
-// Create a new Oauth2.0 client and pass in the config:
-
+// Create a new Oauth2.0 client and pass in the config
 $client = new Client($config);
 
 // Let the client build the authorization request for you:
@@ -81,11 +80,16 @@ $accessToken = $client->getAccessToken(array(
 ));
 ```
 
-You can then store the access token in your backend system and use it to perform Oauth2.0 requests: 
+The access token is a very lightweight object that can be stored in a session or serialized in your backend system for later use, so you don't have to repeat the previous steps if not necessary.
+
+Then, whenever you need to perform an Oauth2.0 request: 
 
 ```
 // Create a client
 $client = new Client($config);
+
+// Get the token from your backend e.g. with unserialize
+$accessToken = getAccessTokenFromYourBackend(); // Replace with your custom function
 
 and perform GET requests
 $response = $client->get('http://api.youwishtoconnect.to/some_endpoint', array('access_token', $accessToken->getAccessToken()));
