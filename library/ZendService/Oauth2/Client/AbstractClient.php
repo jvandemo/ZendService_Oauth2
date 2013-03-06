@@ -21,7 +21,6 @@
  */
 namespace ZendService\Oauth2\Client;
 
-use ZendService;
 use ZendService\Oauth2\AccessToken\AccessTokenInterface;
 use ZendService\Oauth2\AuthorizationGrant\AuthorizationCode;
 use ZendService\Oauth2\AuthorizationGrant\AuthorizationGrantInterface;
@@ -112,7 +111,7 @@ class AbstractClient implements ClientInterface
     /**
      * Set authorization grant
      *
-     * @param \ZendService\Oauth2\AuthorizationGrant\AuthorizationGrantInterface $_authorizationGrant            
+     * @param \ZendService\Oauth2\AuthorizationGrant\AuthorizationGrantInterface $_authorizationGrant
      * @return self
      */
     public function setAuthorizationGrant ($authorizationGrant)
@@ -140,7 +139,7 @@ class AbstractClient implements ClientInterface
     /**
      * Set HTTP client
      *
-     * @param \ZendService\Oauth2\Http\Client\ClientInterface $httpClient            
+     * @param \ZendService\Oauth2\Http\Client\ClientInterface $httpClient
      * @return self
      */
     public function setHttpClient ($httpClient)
@@ -204,10 +203,10 @@ class AbstractClient implements ClientInterface
     /**
      * Perform GET request
      *
-     * @param string $url            
-     * @param array $query            
-     * @param array $headers            
-     * @param string $body            
+     * @param string $url
+     * @param array $query
+     * @param array $headers
+     * @param string $body
      *
      * @return mixed Response
      */
@@ -219,10 +218,10 @@ class AbstractClient implements ClientInterface
     /**
      * Perform POST request
      *
-     * @param string $url            
-     * @param array $params            
-     * @param array $headers            
-     * @param string $body            
+     * @param string $url
+     * @param array $params
+     * @param array $headers
+     * @param string $body
      *
      * @return mixed Response
      */
