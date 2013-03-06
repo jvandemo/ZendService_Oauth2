@@ -24,19 +24,31 @@ abstract class AbstractAuthorizationGrant implements AuthorizationGrantInterface
 {
 
     /**
+     * Convenience placeholder for options that are passed to the constructor
+     *
+     * @var mixed
+     */
+    protected $_options = null;
+
+    /**
      * Default constructor
      *
-     * @param array|Traversable $options            
+     * @param array|Traversable $options
      */
     public function __construct ($options = array())
     {
+        
+        // Call setters for all options that have a setter
         $this->setOptions($options);
+        
+        // Store options in placeholder so items that don't have setter can also be accessed if necessary
+        $this->_options = $options;
     }
 
     /**
      * Set options
      *
-     * @param array|\Traversable $options            
+     * @param array|\Traversable $options
      * @throws \Zend\View\Exception\InvalidArgumentException
      * @return ViewModel
      */
@@ -74,8 +86,8 @@ abstract class AbstractAuthorizationGrant implements AuthorizationGrantInterface
      *
      * will run setClientId('1234')
      *
-     * @param string $name            
-     * @param mixed $value            
+     * @param string $name
+     * @param mixed $value
      * @return self
      */
     public function setOption ($name = '', $value = null)
@@ -104,27 +116,27 @@ abstract class AbstractAuthorizationGrant implements AuthorizationGrantInterface
      *
      * will run getClientId()
      *
-     * @param string $name            
-     * @param mixed $params            
+     * @param string $name
+     * @param mixed $params
      * @return self
      */
     public function getOption ($name = '')
     {
         // Assemble setter name
-        $getter = 'set' . $this->_underscoreToUpperCase($name);
+        $getter = 'get' . $this->_underscoreToUpperCase($name);
         
         // Handle unexisting setter
         if (! method_exists($this, $getter)) {
             return $this;
         }
         
-        return $this->$getter($value);
+        return $this->$getter();
     }
 
     /**
      * Convert all underscores in string to upper case
      *
-     * @param string $name            
+     * @param string $name
      * @return string String with underscores replaced by upper case
      */
     protected function _underscoreToUpperCase ($name = '')
