@@ -32,6 +32,8 @@ The source of the demo page is included in the `demos` folder.
 
 ### A quick demo
 
+A quick example using the default Authorization Code grant: 
+
 ```
 use ZendService\Oauth2\Client\Client;
 
